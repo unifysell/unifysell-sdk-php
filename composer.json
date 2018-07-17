@@ -8,6 +8,7 @@
     "unifysell"
   ],
   "homepage": "https://unifysell.de",
+  "license": "MIT",
   "authors": [
     {
       "name": "Thomas Rückert"
