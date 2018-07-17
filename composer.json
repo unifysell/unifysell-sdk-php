@@ -19,14 +19,14 @@
     "ext-curl": "*",
     "ext-json": "*",
     "ext-mbstring": "*",
-    "guzzlehttp/guzzle": "^6.2"
+    "guzzlehttp/guzzle": "^6.2",
+    "stevenmaguire/oauth2-keycloak": "^2.1"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",
     "phpunit/phpunit": "^4.8",
     "squizlabs/php_codesniffer": "~2.6",
     "friendsofphp/php-cs-fixer": "*",
-    "stevenmaguire/oauth2-keycloak": "^2.1"
   },
   "autoload": {
     "psr-4": {
