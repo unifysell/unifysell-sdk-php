@@ -1,0 +1,7 @@
+composer.phar
+composer.lock
+vendor/
+.token.json
+src/unifysell-api-sdk/.travis.yml
+src/unifysell-api-sdk/git_push.sh
+src/unifysell-api-sdk/phpunit.xml.dist

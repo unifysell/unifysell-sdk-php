@@ -1,0 +1,42 @@
+{
+  "name": "unifysell/unifysell-sdk-php",
+  "description": "SDK with OAuth2 for the unifysell api.",
+  "keywords": [
+    "php",
+    "sdk",
+    "api",
+    "unifysell"
+  ],
+  "homepage": "https://unifysell.de",
+  "authors": [
+    {
+      "name": "Thomas Rückert"
+    }
+  ],
+  "require": {
+    "php": ">=5.5",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "ext-mbstring": "*",
+    "guzzlehttp/guzzle": "^6.2"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-master",
+    "phpunit/phpunit": "^4.8",
+    "squizlabs/php_codesniffer": "~2.6",
+    "friendsofphp/php-cs-fixer": "*",
+    "stevenmaguire/oauth2-keycloak": "^2.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Unifysell\\SDK\\" : "src/unifysell-api-sdk/lib/",
+      "Unifysell\\OAuth2\\" : "src/unifysell-api-auth/src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Unifysell\\SDK\\" : "src/unifysell-api-sdk/test/",
+      "Unifysell\\OAuth2\\Test\\" : "src/unifysell-api-auth/test/"
+    }
+  }
+}
