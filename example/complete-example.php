@@ -2,13 +2,11 @@
 
 require 'vendor/autoload.php';
 
-//AUTH
+# Authenticate
 function getAccessToken() {
-    $keycloakClient = new \Unifysell\OAuth2\Client\Keycloak(
-        '...',
-        '...',
-        '...'
-    );
+
+    # creating the keycloak client without params will automatically set demo credentials
+    $keycloakClient = new \Unifysell\OAuth2\Client\Keycloak();
 
     $tokenFilename = '.token.json';
 
@@ -40,8 +38,7 @@ function getAccessToken() {
     return $keycloakClient->getAccessToken()->getToken();
 }
 
-//SDK
-
+# SDK - access the API
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', getAccessToken());
 $config->setApiKeyPrefix('Authorization', 'Bearer');
 

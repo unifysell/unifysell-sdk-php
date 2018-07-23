@@ -35,13 +35,18 @@ class Keycloak
 
     /**
      * Keycloak constructor.
+     *
+     * Has default configuration for accessing demo api.
+     *
+     * @param string $clientId
+     * @param string $clientSecret
      */
-    public function __construct($realm, $clientId, $clientSecret)
+    public function __construct($clientId = 'demo-client', $clientSecret = 'c562e90b-9ad6-4ae0-be5d-53765b0d4e00')
     {
         $this->setProvider(
             new \Stevenmaguire\OAuth2\Client\Provider\Keycloak([
                 'authServerUrl'         => 'https://login.nepda.eu/auth',
-                'realm'                 => $realm,
+                'realm'                 => 'master',
                 'clientId'              => $clientId,
                 'clientSecret'          => $clientSecret,
                 'encryptionAlgorithm'   => 'RS256'
@@ -129,6 +134,7 @@ class Keycloak
 
     /**
      * @return \League\OAuth2\Client\Token\AccessToken
+     * @throws \Exception
      */
     public function getAccessToken()
     {
