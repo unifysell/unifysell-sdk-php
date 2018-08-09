@@ -1799,6 +1799,2836 @@ class OrdersApi
     }
 
     /**
+     * Operation markOrderAsAcknowledged
+     *
+     * Mark a given order as acknowledged.
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \Unifysell\SDK\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Unifysell\SDK\Model\UpdateOrderResponse
+     */
+    public function markOrderAsAcknowledged($order_id)
+    {
+        list($response) = $this->markOrderAsAcknowledgedWithHttpInfo($order_id);
+        return $response;
+    }
+
+    /**
+     * Operation markOrderAsAcknowledgedWithHttpInfo
+     *
+     * Mark a given order as acknowledged.
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \Unifysell\SDK\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Unifysell\SDK\Model\UpdateOrderResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function markOrderAsAcknowledgedWithHttpInfo($order_id)
+    {
+        $returnType = '\Unifysell\SDK\Model\UpdateOrderResponse';
+        $request = $this->markOrderAsAcknowledgedRequest($order_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Unifysell\SDK\Model\UpdateOrderResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 301:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Unifysell\SDK\Model\ErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Unifysell\SDK\Model\ErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation markOrderAsAcknowledgedAsync
+     *
+     * Mark a given order as acknowledged.
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function markOrderAsAcknowledgedAsync($order_id)
+    {
+        return $this->markOrderAsAcknowledgedAsyncWithHttpInfo($order_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation markOrderAsAcknowledgedAsyncWithHttpInfo
+     *
+     * Mark a given order as acknowledged.
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function markOrderAsAcknowledgedAsyncWithHttpInfo($order_id)
+    {
+        $returnType = '\Unifysell\SDK\Model\UpdateOrderResponse';
+        $request = $this->markOrderAsAcknowledgedRequest($order_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'markOrderAsAcknowledged'
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function markOrderAsAcknowledgedRequest($order_id)
+    {
+        // verify the required parameter 'order_id' is set
+        if ($order_id === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $order_id when calling markOrderAsAcknowledged'
+            );
+        }
+
+        $resourcePath = '/api/order/{order_id}/mark-as-acknowledged';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // path params
+        if ($order_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'order_id' . '}',
+                ObjectSerializer::toPathValue($order_id),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            // \stdClass has no __toString(), so we should encode it manually
+            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($httpBody);
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'PATCH',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation markOrderAsAcknowledgedV1
+     *
+     * Mark a given order as acknowledged.
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \Unifysell\SDK\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Unifysell\SDK\Model\UpdateOrderResponse
+     */
+    public function markOrderAsAcknowledgedV1($order_id)
+    {
+        list($response) = $this->markOrderAsAcknowledgedV1WithHttpInfo($order_id);
+        return $response;
+    }
+
+    /**
+     * Operation markOrderAsAcknowledgedV1WithHttpInfo
+     *
+     * Mark a given order as acknowledged.
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \Unifysell\SDK\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Unifysell\SDK\Model\UpdateOrderResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function markOrderAsAcknowledgedV1WithHttpInfo($order_id)
+    {
+        $returnType = '\Unifysell\SDK\Model\UpdateOrderResponse';
+        $request = $this->markOrderAsAcknowledgedV1Request($order_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Unifysell\SDK\Model\UpdateOrderResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 301:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Unifysell\SDK\Model\ErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Unifysell\SDK\Model\ErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation markOrderAsAcknowledgedV1Async
+     *
+     * Mark a given order as acknowledged.
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function markOrderAsAcknowledgedV1Async($order_id)
+    {
+        return $this->markOrderAsAcknowledgedV1AsyncWithHttpInfo($order_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation markOrderAsAcknowledgedV1AsyncWithHttpInfo
+     *
+     * Mark a given order as acknowledged.
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function markOrderAsAcknowledgedV1AsyncWithHttpInfo($order_id)
+    {
+        $returnType = '\Unifysell\SDK\Model\UpdateOrderResponse';
+        $request = $this->markOrderAsAcknowledgedV1Request($order_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'markOrderAsAcknowledgedV1'
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function markOrderAsAcknowledgedV1Request($order_id)
+    {
+        // verify the required parameter 'order_id' is set
+        if ($order_id === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $order_id when calling markOrderAsAcknowledgedV1'
+            );
+        }
+
+        $resourcePath = '/api/v1/order/{order_id}/mark-as-acknowledged';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // path params
+        if ($order_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'order_id' . '}',
+                ObjectSerializer::toPathValue($order_id),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            // \stdClass has no __toString(), so we should encode it manually
+            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($httpBody);
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'PATCH',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation markOrderAsCanceled
+     *
+     * Mark a given order as canceled
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \Unifysell\SDK\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Unifysell\SDK\Model\UpdateOrderResponse
+     */
+    public function markOrderAsCanceled($order_id)
+    {
+        list($response) = $this->markOrderAsCanceledWithHttpInfo($order_id);
+        return $response;
+    }
+
+    /**
+     * Operation markOrderAsCanceledWithHttpInfo
+     *
+     * Mark a given order as canceled
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \Unifysell\SDK\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Unifysell\SDK\Model\UpdateOrderResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function markOrderAsCanceledWithHttpInfo($order_id)
+    {
+        $returnType = '\Unifysell\SDK\Model\UpdateOrderResponse';
+        $request = $this->markOrderAsCanceledRequest($order_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Unifysell\SDK\Model\UpdateOrderResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 301:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Unifysell\SDK\Model\ErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Unifysell\SDK\Model\ErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation markOrderAsCanceledAsync
+     *
+     * Mark a given order as canceled
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function markOrderAsCanceledAsync($order_id)
+    {
+        return $this->markOrderAsCanceledAsyncWithHttpInfo($order_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation markOrderAsCanceledAsyncWithHttpInfo
+     *
+     * Mark a given order as canceled
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function markOrderAsCanceledAsyncWithHttpInfo($order_id)
+    {
+        $returnType = '\Unifysell\SDK\Model\UpdateOrderResponse';
+        $request = $this->markOrderAsCanceledRequest($order_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'markOrderAsCanceled'
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function markOrderAsCanceledRequest($order_id)
+    {
+        // verify the required parameter 'order_id' is set
+        if ($order_id === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $order_id when calling markOrderAsCanceled'
+            );
+        }
+
+        $resourcePath = '/api/order/{order_id}/mark-as-canceled';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // path params
+        if ($order_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'order_id' . '}',
+                ObjectSerializer::toPathValue($order_id),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            // \stdClass has no __toString(), so we should encode it manually
+            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($httpBody);
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'PATCH',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation markOrderAsCanceledV1
+     *
+     * Mark a given order as canceled
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \Unifysell\SDK\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Unifysell\SDK\Model\UpdateOrderResponse
+     */
+    public function markOrderAsCanceledV1($order_id)
+    {
+        list($response) = $this->markOrderAsCanceledV1WithHttpInfo($order_id);
+        return $response;
+    }
+
+    /**
+     * Operation markOrderAsCanceledV1WithHttpInfo
+     *
+     * Mark a given order as canceled
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \Unifysell\SDK\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Unifysell\SDK\Model\UpdateOrderResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function markOrderAsCanceledV1WithHttpInfo($order_id)
+    {
+        $returnType = '\Unifysell\SDK\Model\UpdateOrderResponse';
+        $request = $this->markOrderAsCanceledV1Request($order_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Unifysell\SDK\Model\UpdateOrderResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 301:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Unifysell\SDK\Model\ErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Unifysell\SDK\Model\ErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation markOrderAsCanceledV1Async
+     *
+     * Mark a given order as canceled
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function markOrderAsCanceledV1Async($order_id)
+    {
+        return $this->markOrderAsCanceledV1AsyncWithHttpInfo($order_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation markOrderAsCanceledV1AsyncWithHttpInfo
+     *
+     * Mark a given order as canceled
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function markOrderAsCanceledV1AsyncWithHttpInfo($order_id)
+    {
+        $returnType = '\Unifysell\SDK\Model\UpdateOrderResponse';
+        $request = $this->markOrderAsCanceledV1Request($order_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'markOrderAsCanceledV1'
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function markOrderAsCanceledV1Request($order_id)
+    {
+        // verify the required parameter 'order_id' is set
+        if ($order_id === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $order_id when calling markOrderAsCanceledV1'
+            );
+        }
+
+        $resourcePath = '/api/v1/order/{order_id}/mark-as-canceled';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // path params
+        if ($order_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'order_id' . '}',
+                ObjectSerializer::toPathValue($order_id),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            // \stdClass has no __toString(), so we should encode it manually
+            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($httpBody);
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'PATCH',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation markOrderAsNotAcknowledged
+     *
+     * Mark a given order as NOT acknowledged.
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \Unifysell\SDK\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Unifysell\SDK\Model\UpdateOrderResponse
+     */
+    public function markOrderAsNotAcknowledged($order_id)
+    {
+        list($response) = $this->markOrderAsNotAcknowledgedWithHttpInfo($order_id);
+        return $response;
+    }
+
+    /**
+     * Operation markOrderAsNotAcknowledgedWithHttpInfo
+     *
+     * Mark a given order as NOT acknowledged.
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \Unifysell\SDK\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Unifysell\SDK\Model\UpdateOrderResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function markOrderAsNotAcknowledgedWithHttpInfo($order_id)
+    {
+        $returnType = '\Unifysell\SDK\Model\UpdateOrderResponse';
+        $request = $this->markOrderAsNotAcknowledgedRequest($order_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Unifysell\SDK\Model\UpdateOrderResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 301:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Unifysell\SDK\Model\ErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Unifysell\SDK\Model\ErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation markOrderAsNotAcknowledgedAsync
+     *
+     * Mark a given order as NOT acknowledged.
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function markOrderAsNotAcknowledgedAsync($order_id)
+    {
+        return $this->markOrderAsNotAcknowledgedAsyncWithHttpInfo($order_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation markOrderAsNotAcknowledgedAsyncWithHttpInfo
+     *
+     * Mark a given order as NOT acknowledged.
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function markOrderAsNotAcknowledgedAsyncWithHttpInfo($order_id)
+    {
+        $returnType = '\Unifysell\SDK\Model\UpdateOrderResponse';
+        $request = $this->markOrderAsNotAcknowledgedRequest($order_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'markOrderAsNotAcknowledged'
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function markOrderAsNotAcknowledgedRequest($order_id)
+    {
+        // verify the required parameter 'order_id' is set
+        if ($order_id === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $order_id when calling markOrderAsNotAcknowledged'
+            );
+        }
+
+        $resourcePath = '/api/order/{order_id}/mark-as-not-acknowledged';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // path params
+        if ($order_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'order_id' . '}',
+                ObjectSerializer::toPathValue($order_id),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            // \stdClass has no __toString(), so we should encode it manually
+            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($httpBody);
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'PATCH',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation markOrderAsNotAcknowledgedV1
+     *
+     * Mark a given order as NOT acknowledged.
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \Unifysell\SDK\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Unifysell\SDK\Model\UpdateOrderResponse
+     */
+    public function markOrderAsNotAcknowledgedV1($order_id)
+    {
+        list($response) = $this->markOrderAsNotAcknowledgedV1WithHttpInfo($order_id);
+        return $response;
+    }
+
+    /**
+     * Operation markOrderAsNotAcknowledgedV1WithHttpInfo
+     *
+     * Mark a given order as NOT acknowledged.
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \Unifysell\SDK\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Unifysell\SDK\Model\UpdateOrderResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function markOrderAsNotAcknowledgedV1WithHttpInfo($order_id)
+    {
+        $returnType = '\Unifysell\SDK\Model\UpdateOrderResponse';
+        $request = $this->markOrderAsNotAcknowledgedV1Request($order_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Unifysell\SDK\Model\UpdateOrderResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 301:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Unifysell\SDK\Model\ErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Unifysell\SDK\Model\ErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation markOrderAsNotAcknowledgedV1Async
+     *
+     * Mark a given order as NOT acknowledged.
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function markOrderAsNotAcknowledgedV1Async($order_id)
+    {
+        return $this->markOrderAsNotAcknowledgedV1AsyncWithHttpInfo($order_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation markOrderAsNotAcknowledgedV1AsyncWithHttpInfo
+     *
+     * Mark a given order as NOT acknowledged.
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function markOrderAsNotAcknowledgedV1AsyncWithHttpInfo($order_id)
+    {
+        $returnType = '\Unifysell\SDK\Model\UpdateOrderResponse';
+        $request = $this->markOrderAsNotAcknowledgedV1Request($order_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'markOrderAsNotAcknowledgedV1'
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function markOrderAsNotAcknowledgedV1Request($order_id)
+    {
+        // verify the required parameter 'order_id' is set
+        if ($order_id === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $order_id when calling markOrderAsNotAcknowledgedV1'
+            );
+        }
+
+        $resourcePath = '/api/v1/order/{order_id}/mark-as-not-acknowledged';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // path params
+        if ($order_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'order_id' . '}',
+                ObjectSerializer::toPathValue($order_id),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            // \stdClass has no __toString(), so we should encode it manually
+            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($httpBody);
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'PATCH',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation markOrderAsPaid
+     *
+     * Mark a given order as paid.
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \Unifysell\SDK\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Unifysell\SDK\Model\UpdateOrderResponse
+     */
+    public function markOrderAsPaid($order_id)
+    {
+        list($response) = $this->markOrderAsPaidWithHttpInfo($order_id);
+        return $response;
+    }
+
+    /**
+     * Operation markOrderAsPaidWithHttpInfo
+     *
+     * Mark a given order as paid.
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \Unifysell\SDK\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Unifysell\SDK\Model\UpdateOrderResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function markOrderAsPaidWithHttpInfo($order_id)
+    {
+        $returnType = '\Unifysell\SDK\Model\UpdateOrderResponse';
+        $request = $this->markOrderAsPaidRequest($order_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Unifysell\SDK\Model\UpdateOrderResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 301:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Unifysell\SDK\Model\ErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Unifysell\SDK\Model\ErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation markOrderAsPaidAsync
+     *
+     * Mark a given order as paid.
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function markOrderAsPaidAsync($order_id)
+    {
+        return $this->markOrderAsPaidAsyncWithHttpInfo($order_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation markOrderAsPaidAsyncWithHttpInfo
+     *
+     * Mark a given order as paid.
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function markOrderAsPaidAsyncWithHttpInfo($order_id)
+    {
+        $returnType = '\Unifysell\SDK\Model\UpdateOrderResponse';
+        $request = $this->markOrderAsPaidRequest($order_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'markOrderAsPaid'
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function markOrderAsPaidRequest($order_id)
+    {
+        // verify the required parameter 'order_id' is set
+        if ($order_id === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $order_id when calling markOrderAsPaid'
+            );
+        }
+
+        $resourcePath = '/api/order/{order_id}/mark-as-paid';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // path params
+        if ($order_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'order_id' . '}',
+                ObjectSerializer::toPathValue($order_id),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            // \stdClass has no __toString(), so we should encode it manually
+            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($httpBody);
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'PATCH',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation markOrderAsPaidV1
+     *
+     * Mark a given order as paid.
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \Unifysell\SDK\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Unifysell\SDK\Model\UpdateOrderResponse
+     */
+    public function markOrderAsPaidV1($order_id)
+    {
+        list($response) = $this->markOrderAsPaidV1WithHttpInfo($order_id);
+        return $response;
+    }
+
+    /**
+     * Operation markOrderAsPaidV1WithHttpInfo
+     *
+     * Mark a given order as paid.
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \Unifysell\SDK\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Unifysell\SDK\Model\UpdateOrderResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function markOrderAsPaidV1WithHttpInfo($order_id)
+    {
+        $returnType = '\Unifysell\SDK\Model\UpdateOrderResponse';
+        $request = $this->markOrderAsPaidV1Request($order_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Unifysell\SDK\Model\UpdateOrderResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 301:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Unifysell\SDK\Model\ErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Unifysell\SDK\Model\ErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation markOrderAsPaidV1Async
+     *
+     * Mark a given order as paid.
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function markOrderAsPaidV1Async($order_id)
+    {
+        return $this->markOrderAsPaidV1AsyncWithHttpInfo($order_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation markOrderAsPaidV1AsyncWithHttpInfo
+     *
+     * Mark a given order as paid.
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function markOrderAsPaidV1AsyncWithHttpInfo($order_id)
+    {
+        $returnType = '\Unifysell\SDK\Model\UpdateOrderResponse';
+        $request = $this->markOrderAsPaidV1Request($order_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'markOrderAsPaidV1'
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function markOrderAsPaidV1Request($order_id)
+    {
+        // verify the required parameter 'order_id' is set
+        if ($order_id === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $order_id when calling markOrderAsPaidV1'
+            );
+        }
+
+        $resourcePath = '/api/v1/order/{order_id}/mark-as-paid';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // path params
+        if ($order_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'order_id' . '}',
+                ObjectSerializer::toPathValue($order_id),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            // \stdClass has no __toString(), so we should encode it manually
+            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($httpBody);
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'PATCH',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation markOrderAsRefund
+     *
+     * Mark a given order as refund
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \Unifysell\SDK\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Unifysell\SDK\Model\UpdateOrderResponse
+     */
+    public function markOrderAsRefund($order_id)
+    {
+        list($response) = $this->markOrderAsRefundWithHttpInfo($order_id);
+        return $response;
+    }
+
+    /**
+     * Operation markOrderAsRefundWithHttpInfo
+     *
+     * Mark a given order as refund
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \Unifysell\SDK\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Unifysell\SDK\Model\UpdateOrderResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function markOrderAsRefundWithHttpInfo($order_id)
+    {
+        $returnType = '\Unifysell\SDK\Model\UpdateOrderResponse';
+        $request = $this->markOrderAsRefundRequest($order_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Unifysell\SDK\Model\UpdateOrderResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 301:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Unifysell\SDK\Model\ErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Unifysell\SDK\Model\ErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation markOrderAsRefundAsync
+     *
+     * Mark a given order as refund
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function markOrderAsRefundAsync($order_id)
+    {
+        return $this->markOrderAsRefundAsyncWithHttpInfo($order_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation markOrderAsRefundAsyncWithHttpInfo
+     *
+     * Mark a given order as refund
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function markOrderAsRefundAsyncWithHttpInfo($order_id)
+    {
+        $returnType = '\Unifysell\SDK\Model\UpdateOrderResponse';
+        $request = $this->markOrderAsRefundRequest($order_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'markOrderAsRefund'
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function markOrderAsRefundRequest($order_id)
+    {
+        // verify the required parameter 'order_id' is set
+        if ($order_id === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $order_id when calling markOrderAsRefund'
+            );
+        }
+
+        $resourcePath = '/api/order/{order_id}/mark-as-refund';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // path params
+        if ($order_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'order_id' . '}',
+                ObjectSerializer::toPathValue($order_id),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            // \stdClass has no __toString(), so we should encode it manually
+            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($httpBody);
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'PATCH',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation markOrderAsRefundV1
+     *
+     * Mark a given order as refund
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \Unifysell\SDK\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Unifysell\SDK\Model\UpdateOrderResponse
+     */
+    public function markOrderAsRefundV1($order_id)
+    {
+        list($response) = $this->markOrderAsRefundV1WithHttpInfo($order_id);
+        return $response;
+    }
+
+    /**
+     * Operation markOrderAsRefundV1WithHttpInfo
+     *
+     * Mark a given order as refund
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \Unifysell\SDK\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Unifysell\SDK\Model\UpdateOrderResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function markOrderAsRefundV1WithHttpInfo($order_id)
+    {
+        $returnType = '\Unifysell\SDK\Model\UpdateOrderResponse';
+        $request = $this->markOrderAsRefundV1Request($order_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Unifysell\SDK\Model\UpdateOrderResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 301:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Unifysell\SDK\Model\ErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Unifysell\SDK\Model\ErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation markOrderAsRefundV1Async
+     *
+     * Mark a given order as refund
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function markOrderAsRefundV1Async($order_id)
+    {
+        return $this->markOrderAsRefundV1AsyncWithHttpInfo($order_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation markOrderAsRefundV1AsyncWithHttpInfo
+     *
+     * Mark a given order as refund
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function markOrderAsRefundV1AsyncWithHttpInfo($order_id)
+    {
+        $returnType = '\Unifysell\SDK\Model\UpdateOrderResponse';
+        $request = $this->markOrderAsRefundV1Request($order_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'markOrderAsRefundV1'
+     *
+     * @param  int $order_id Order ID (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function markOrderAsRefundV1Request($order_id)
+    {
+        // verify the required parameter 'order_id' is set
+        if ($order_id === null) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $order_id when calling markOrderAsRefundV1'
+            );
+        }
+
+        $resourcePath = '/api/v1/order/{order_id}/mark-as-refund';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // path params
+        if ($order_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'order_id' . '}',
+                ObjectSerializer::toPathValue($order_id),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            // \stdClass has no __toString(), so we should encode it manually
+            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($httpBody);
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'PATCH',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation markOrderAsShipped
      *
      * Mark a given order as shipped
@@ -1808,7 +4638,7 @@ class OrdersApi
      *
      * @throws \Unifysell\SDK\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Unifysell\SDK\Model\OrderMarkAsShippedResponse
+     * @return \Unifysell\SDK\Model\UpdateOrderResponse
      */
     public function markOrderAsShipped($order_id, $body = null)
     {
@@ -1826,11 +4656,11 @@ class OrdersApi
      *
      * @throws \Unifysell\SDK\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Unifysell\SDK\Model\OrderMarkAsShippedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Unifysell\SDK\Model\UpdateOrderResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function markOrderAsShippedWithHttpInfo($order_id, $body = null)
     {
-        $returnType = '\Unifysell\SDK\Model\OrderMarkAsShippedResponse';
+        $returnType = '\Unifysell\SDK\Model\UpdateOrderResponse';
         $request = $this->markOrderAsShippedRequest($order_id, $body);
 
         try {
@@ -1882,7 +4712,7 @@ class OrdersApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Unifysell\SDK\Model\OrderMarkAsShippedResponse',
+                        '\Unifysell\SDK\Model\UpdateOrderResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1942,7 +4772,7 @@ class OrdersApi
      */
     public function markOrderAsShippedAsyncWithHttpInfo($order_id, $body = null)
     {
-        $returnType = '\Unifysell\SDK\Model\OrderMarkAsShippedResponse';
+        $returnType = '\Unifysell\SDK\Model\UpdateOrderResponse';
         $request = $this->markOrderAsShippedRequest($order_id, $body);
 
         return $this->client
@@ -2082,879 +4912,6 @@ class OrdersApi
 
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
-            'PUT',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation markOrderAsShippedPatch
-     *
-     * Mark a given order as shipped
-     *
-     * @param  int $order_id Order ID (required)
-     * @param  \Unifysell\SDK\Model\OrderMarkAsShippedRequest $body the request object for order mark-as-shipped (optional)
-     *
-     * @throws \Unifysell\SDK\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Unifysell\SDK\Model\OrderMarkAsShippedResponse
-     */
-    public function markOrderAsShippedPatch($order_id, $body = null)
-    {
-        list($response) = $this->markOrderAsShippedPatchWithHttpInfo($order_id, $body);
-        return $response;
-    }
-
-    /**
-     * Operation markOrderAsShippedPatchWithHttpInfo
-     *
-     * Mark a given order as shipped
-     *
-     * @param  int $order_id Order ID (required)
-     * @param  \Unifysell\SDK\Model\OrderMarkAsShippedRequest $body the request object for order mark-as-shipped (optional)
-     *
-     * @throws \Unifysell\SDK\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Unifysell\SDK\Model\OrderMarkAsShippedResponse, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function markOrderAsShippedPatchWithHttpInfo($order_id, $body = null)
-    {
-        $returnType = '\Unifysell\SDK\Model\OrderMarkAsShippedResponse';
-        $request = $this->markOrderAsShippedPatchRequest($order_id, $body);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Unifysell\SDK\Model\OrderMarkAsShippedResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 301:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Unifysell\SDK\Model\ErrorResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                default:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Unifysell\SDK\Model\ErrorResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation markOrderAsShippedPatchAsync
-     *
-     * Mark a given order as shipped
-     *
-     * @param  int $order_id Order ID (required)
-     * @param  \Unifysell\SDK\Model\OrderMarkAsShippedRequest $body the request object for order mark-as-shipped (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function markOrderAsShippedPatchAsync($order_id, $body = null)
-    {
-        return $this->markOrderAsShippedPatchAsyncWithHttpInfo($order_id, $body)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation markOrderAsShippedPatchAsyncWithHttpInfo
-     *
-     * Mark a given order as shipped
-     *
-     * @param  int $order_id Order ID (required)
-     * @param  \Unifysell\SDK\Model\OrderMarkAsShippedRequest $body the request object for order mark-as-shipped (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function markOrderAsShippedPatchAsyncWithHttpInfo($order_id, $body = null)
-    {
-        $returnType = '\Unifysell\SDK\Model\OrderMarkAsShippedResponse';
-        $request = $this->markOrderAsShippedPatchRequest($order_id, $body);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'markOrderAsShippedPatch'
-     *
-     * @param  int $order_id Order ID (required)
-     * @param  \Unifysell\SDK\Model\OrderMarkAsShippedRequest $body the request object for order mark-as-shipped (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    protected function markOrderAsShippedPatchRequest($order_id, $body = null)
-    {
-        // verify the required parameter 'order_id' is set
-        if ($order_id === null) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $order_id when calling markOrderAsShippedPatch'
-            );
-        }
-
-        $resourcePath = '/api/order/{order_id}/mark-as-shipped';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-        // path params
-        if ($order_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'order_id' . '}',
-                ObjectSerializer::toPathValue($order_id),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-        if (isset($body)) {
-            $_tempBody = $body;
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            // \stdClass has no __toString(), so we should encode it manually
-            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($httpBody);
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
-        return new Request(
-            'PATCH',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation markOrderAsShippedPatchV0
-     *
-     * Mark a given order as shipped
-     *
-     * @param  int $order_id Order ID (required)
-     * @param  \Unifysell\SDK\Model\OrderMarkAsShippedRequest $body the request object for order mark-as-shipped (optional)
-     *
-     * @throws \Unifysell\SDK\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Unifysell\SDK\Model\OrderMarkAsShippedResponse
-     */
-    public function markOrderAsShippedPatchV0($order_id, $body = null)
-    {
-        list($response) = $this->markOrderAsShippedPatchV0WithHttpInfo($order_id, $body);
-        return $response;
-    }
-
-    /**
-     * Operation markOrderAsShippedPatchV0WithHttpInfo
-     *
-     * Mark a given order as shipped
-     *
-     * @param  int $order_id Order ID (required)
-     * @param  \Unifysell\SDK\Model\OrderMarkAsShippedRequest $body the request object for order mark-as-shipped (optional)
-     *
-     * @throws \Unifysell\SDK\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Unifysell\SDK\Model\OrderMarkAsShippedResponse, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function markOrderAsShippedPatchV0WithHttpInfo($order_id, $body = null)
-    {
-        $returnType = '\Unifysell\SDK\Model\OrderMarkAsShippedResponse';
-        $request = $this->markOrderAsShippedPatchV0Request($order_id, $body);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Unifysell\SDK\Model\OrderMarkAsShippedResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 301:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Unifysell\SDK\Model\ErrorResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                default:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Unifysell\SDK\Model\ErrorResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation markOrderAsShippedPatchV0Async
-     *
-     * Mark a given order as shipped
-     *
-     * @param  int $order_id Order ID (required)
-     * @param  \Unifysell\SDK\Model\OrderMarkAsShippedRequest $body the request object for order mark-as-shipped (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function markOrderAsShippedPatchV0Async($order_id, $body = null)
-    {
-        return $this->markOrderAsShippedPatchV0AsyncWithHttpInfo($order_id, $body)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation markOrderAsShippedPatchV0AsyncWithHttpInfo
-     *
-     * Mark a given order as shipped
-     *
-     * @param  int $order_id Order ID (required)
-     * @param  \Unifysell\SDK\Model\OrderMarkAsShippedRequest $body the request object for order mark-as-shipped (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function markOrderAsShippedPatchV0AsyncWithHttpInfo($order_id, $body = null)
-    {
-        $returnType = '\Unifysell\SDK\Model\OrderMarkAsShippedResponse';
-        $request = $this->markOrderAsShippedPatchV0Request($order_id, $body);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'markOrderAsShippedPatchV0'
-     *
-     * @param  int $order_id Order ID (required)
-     * @param  \Unifysell\SDK\Model\OrderMarkAsShippedRequest $body the request object for order mark-as-shipped (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    protected function markOrderAsShippedPatchV0Request($order_id, $body = null)
-    {
-        // verify the required parameter 'order_id' is set
-        if ($order_id === null) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $order_id when calling markOrderAsShippedPatchV0'
-            );
-        }
-
-        $resourcePath = '/api/v0/order/{order_id}/mark-as-shipped';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-        // path params
-        if ($order_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'order_id' . '}',
-                ObjectSerializer::toPathValue($order_id),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-        if (isset($body)) {
-            $_tempBody = $body;
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            // \stdClass has no __toString(), so we should encode it manually
-            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($httpBody);
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
-        return new Request(
-            'PATCH',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation markOrderAsShippedPatchV1
-     *
-     * Mark a given order as shipped
-     *
-     * @param  int $order_id Order ID (required)
-     * @param  \Unifysell\SDK\Model\OrderMarkAsShippedRequest $body the request object for order mark-as-shipped (optional)
-     *
-     * @throws \Unifysell\SDK\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \Unifysell\SDK\Model\OrderMarkAsShippedResponse
-     */
-    public function markOrderAsShippedPatchV1($order_id, $body = null)
-    {
-        list($response) = $this->markOrderAsShippedPatchV1WithHttpInfo($order_id, $body);
-        return $response;
-    }
-
-    /**
-     * Operation markOrderAsShippedPatchV1WithHttpInfo
-     *
-     * Mark a given order as shipped
-     *
-     * @param  int $order_id Order ID (required)
-     * @param  \Unifysell\SDK\Model\OrderMarkAsShippedRequest $body the request object for order mark-as-shipped (optional)
-     *
-     * @throws \Unifysell\SDK\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \Unifysell\SDK\Model\OrderMarkAsShippedResponse, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function markOrderAsShippedPatchV1WithHttpInfo($order_id, $body = null)
-    {
-        $returnType = '\Unifysell\SDK\Model\OrderMarkAsShippedResponse';
-        $request = $this->markOrderAsShippedPatchV1Request($order_id, $body);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-                if ($returnType !== 'string') {
-                    $content = json_decode($content);
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Unifysell\SDK\Model\OrderMarkAsShippedResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 301:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Unifysell\SDK\Model\ErrorResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                default:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Unifysell\SDK\Model\ErrorResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation markOrderAsShippedPatchV1Async
-     *
-     * Mark a given order as shipped
-     *
-     * @param  int $order_id Order ID (required)
-     * @param  \Unifysell\SDK\Model\OrderMarkAsShippedRequest $body the request object for order mark-as-shipped (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function markOrderAsShippedPatchV1Async($order_id, $body = null)
-    {
-        return $this->markOrderAsShippedPatchV1AsyncWithHttpInfo($order_id, $body)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation markOrderAsShippedPatchV1AsyncWithHttpInfo
-     *
-     * Mark a given order as shipped
-     *
-     * @param  int $order_id Order ID (required)
-     * @param  \Unifysell\SDK\Model\OrderMarkAsShippedRequest $body the request object for order mark-as-shipped (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function markOrderAsShippedPatchV1AsyncWithHttpInfo($order_id, $body = null)
-    {
-        $returnType = '\Unifysell\SDK\Model\OrderMarkAsShippedResponse';
-        $request = $this->markOrderAsShippedPatchV1Request($order_id, $body);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'markOrderAsShippedPatchV1'
-     *
-     * @param  int $order_id Order ID (required)
-     * @param  \Unifysell\SDK\Model\OrderMarkAsShippedRequest $body the request object for order mark-as-shipped (optional)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    protected function markOrderAsShippedPatchV1Request($order_id, $body = null)
-    {
-        // verify the required parameter 'order_id' is set
-        if ($order_id === null) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $order_id when calling markOrderAsShippedPatchV1'
-            );
-        }
-
-        $resourcePath = '/api/v1/order/{order_id}/mark-as-shipped';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-        // path params
-        if ($order_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'order_id' . '}',
-                ObjectSerializer::toPathValue($order_id),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-        if (isset($body)) {
-            $_tempBody = $body;
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            $httpBody = $_tempBody;
-            // \stdClass has no __toString(), so we should encode it manually
-            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($httpBody);
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
-        return new Request(
             'PATCH',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
@@ -2972,7 +4929,7 @@ class OrdersApi
      *
      * @throws \Unifysell\SDK\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Unifysell\SDK\Model\OrderMarkAsShippedResponse
+     * @return \Unifysell\SDK\Model\UpdateOrderResponse
      */
     public function markOrderAsShippedV0($order_id, $body = null)
     {
@@ -2990,11 +4947,11 @@ class OrdersApi
      *
      * @throws \Unifysell\SDK\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Unifysell\SDK\Model\OrderMarkAsShippedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Unifysell\SDK\Model\UpdateOrderResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function markOrderAsShippedV0WithHttpInfo($order_id, $body = null)
     {
-        $returnType = '\Unifysell\SDK\Model\OrderMarkAsShippedResponse';
+        $returnType = '\Unifysell\SDK\Model\UpdateOrderResponse';
         $request = $this->markOrderAsShippedV0Request($order_id, $body);
 
         try {
@@ -3046,7 +5003,7 @@ class OrdersApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Unifysell\SDK\Model\OrderMarkAsShippedResponse',
+                        '\Unifysell\SDK\Model\UpdateOrderResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3106,7 +5063,7 @@ class OrdersApi
      */
     public function markOrderAsShippedV0AsyncWithHttpInfo($order_id, $body = null)
     {
-        $returnType = '\Unifysell\SDK\Model\OrderMarkAsShippedResponse';
+        $returnType = '\Unifysell\SDK\Model\UpdateOrderResponse';
         $request = $this->markOrderAsShippedV0Request($order_id, $body);
 
         return $this->client
@@ -3246,7 +5203,7 @@ class OrdersApi
 
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
-            'PUT',
+            'PATCH',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
@@ -3263,7 +5220,7 @@ class OrdersApi
      *
      * @throws \Unifysell\SDK\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Unifysell\SDK\Model\OrderMarkAsShippedResponse
+     * @return \Unifysell\SDK\Model\UpdateOrderResponse
      */
     public function markOrderAsShippedV1($order_id, $body = null)
     {
@@ -3281,11 +5238,11 @@ class OrdersApi
      *
      * @throws \Unifysell\SDK\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Unifysell\SDK\Model\OrderMarkAsShippedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Unifysell\SDK\Model\UpdateOrderResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function markOrderAsShippedV1WithHttpInfo($order_id, $body = null)
     {
-        $returnType = '\Unifysell\SDK\Model\OrderMarkAsShippedResponse';
+        $returnType = '\Unifysell\SDK\Model\UpdateOrderResponse';
         $request = $this->markOrderAsShippedV1Request($order_id, $body);
 
         try {
@@ -3337,7 +5294,7 @@ class OrdersApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Unifysell\SDK\Model\OrderMarkAsShippedResponse',
+                        '\Unifysell\SDK\Model\UpdateOrderResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3397,7 +5354,7 @@ class OrdersApi
      */
     public function markOrderAsShippedV1AsyncWithHttpInfo($order_id, $body = null)
     {
-        $returnType = '\Unifysell\SDK\Model\OrderMarkAsShippedResponse';
+        $returnType = '\Unifysell\SDK\Model\UpdateOrderResponse';
         $request = $this->markOrderAsShippedV1Request($order_id, $body);
 
         return $this->client
@@ -3537,7 +5494,7 @@ class OrdersApi
 
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
-            'PUT',
+            'PATCH',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

@@ -132,42 +132,112 @@ class OrdersApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test case for markOrderAsAcknowledged
+     *
+     * Mark a given order as acknowledged..
+     *
+     */
+    public function testMarkOrderAsAcknowledged()
+    {
+    }
+
+    /**
+     * Test case for markOrderAsAcknowledgedV1
+     *
+     * Mark a given order as acknowledged..
+     *
+     */
+    public function testMarkOrderAsAcknowledgedV1()
+    {
+    }
+
+    /**
+     * Test case for markOrderAsCanceled
+     *
+     * Mark a given order as canceled.
+     *
+     */
+    public function testMarkOrderAsCanceled()
+    {
+    }
+
+    /**
+     * Test case for markOrderAsCanceledV1
+     *
+     * Mark a given order as canceled.
+     *
+     */
+    public function testMarkOrderAsCanceledV1()
+    {
+    }
+
+    /**
+     * Test case for markOrderAsNotAcknowledged
+     *
+     * Mark a given order as NOT acknowledged..
+     *
+     */
+    public function testMarkOrderAsNotAcknowledged()
+    {
+    }
+
+    /**
+     * Test case for markOrderAsNotAcknowledgedV1
+     *
+     * Mark a given order as NOT acknowledged..
+     *
+     */
+    public function testMarkOrderAsNotAcknowledgedV1()
+    {
+    }
+
+    /**
+     * Test case for markOrderAsPaid
+     *
+     * Mark a given order as paid..
+     *
+     */
+    public function testMarkOrderAsPaid()
+    {
+    }
+
+    /**
+     * Test case for markOrderAsPaidV1
+     *
+     * Mark a given order as paid..
+     *
+     */
+    public function testMarkOrderAsPaidV1()
+    {
+    }
+
+    /**
+     * Test case for markOrderAsRefund
+     *
+     * Mark a given order as refund.
+     *
+     */
+    public function testMarkOrderAsRefund()
+    {
+    }
+
+    /**
+     * Test case for markOrderAsRefundV1
+     *
+     * Mark a given order as refund.
+     *
+     */
+    public function testMarkOrderAsRefundV1()
+    {
+    }
+
+    /**
      * Test case for markOrderAsShipped
      *
      * Mark a given order as shipped.
      *
      */
     public function testMarkOrderAsShipped()
-    {
-    }
-
-    /**
-     * Test case for markOrderAsShippedPatch
-     *
-     * Mark a given order as shipped.
-     *
-     */
-    public function testMarkOrderAsShippedPatch()
-    {
-    }
-
-    /**
-     * Test case for markOrderAsShippedPatchV0
-     *
-     * Mark a given order as shipped.
-     *
-     */
-    public function testMarkOrderAsShippedPatchV0()
-    {
-    }
-
-    /**
-     * Test case for markOrderAsShippedPatchV1
-     *
-     * Mark a given order as shipped.
-     *
-     */
-    public function testMarkOrderAsShippedPatchV1()
     {
     }
 

@@ -78,13 +78,6 @@ class MetaTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test attribute "call_id"
-     */
-    public function testPropertyCallId()
-    {
-    }
-
-    /**
      * Test attribute "pagination"
      */
     public function testPropertyPagination()

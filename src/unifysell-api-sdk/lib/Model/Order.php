@@ -628,20 +628,11 @@ class Order implements ModelInterface, ArrayAccess
         if ($this->container['aftertax_total'] === null) {
             $invalidProperties[] = "'aftertax_total' can't be null";
         }
-        if ($this->container['buyer_id'] === null) {
-            $invalidProperties[] = "'buyer_id' can't be null";
-        }
-        if ($this->container['date_cancelled'] === null) {
-            $invalidProperties[] = "'date_cancelled' can't be null";
-        }
         if ($this->container['date_changed'] === null) {
             $invalidProperties[] = "'date_changed' can't be null";
         }
         if ($this->container['date_created'] === null) {
             $invalidProperties[] = "'date_created' can't be null";
-        }
-        if ($this->container['date_paid'] === null) {
-            $invalidProperties[] = "'date_paid' can't be null";
         }
         if ($this->container['id'] === null) {
             $invalidProperties[] = "'id' can't be null";
@@ -657,9 +648,6 @@ class Order implements ModelInterface, ArrayAccess
             );
         }
 
-        if ($this->container['payment_method'] === null) {
-            $invalidProperties[] = "'payment_method' can't be null";
-        }
         $allowedValues = $this->getPaymentMethodAllowableValues();
         if (!in_array($this->container['payment_method'], $allowedValues)) {
             $invalidProperties[] = sprintf(
@@ -668,9 +656,6 @@ class Order implements ModelInterface, ArrayAccess
             );
         }
 
-        if ($this->container['pretax_total'] === null) {
-            $invalidProperties[] = "'pretax_total' can't be null";
-        }
         if ($this->container['shipment_method'] === null) {
             $invalidProperties[] = "'shipment_method' can't be null";
         }
@@ -700,19 +685,10 @@ class Order implements ModelInterface, ArrayAccess
         if ($this->container['aftertax_total'] === null) {
             return false;
         }
-        if ($this->container['buyer_id'] === null) {
-            return false;
-        }
-        if ($this->container['date_cancelled'] === null) {
-            return false;
-        }
         if ($this->container['date_changed'] === null) {
             return false;
         }
         if ($this->container['date_created'] === null) {
-            return false;
-        }
-        if ($this->container['date_paid'] === null) {
             return false;
         }
         if ($this->container['id'] === null) {
@@ -725,14 +701,8 @@ class Order implements ModelInterface, ArrayAccess
         if (!in_array($this->container['package_service'], $allowedValues)) {
             return false;
         }
-        if ($this->container['payment_method'] === null) {
-            return false;
-        }
         $allowedValues = $this->getPaymentMethodAllowableValues();
         if (!in_array($this->container['payment_method'], $allowedValues)) {
-            return false;
-        }
-        if ($this->container['pretax_total'] === null) {
             return false;
         }
         if ($this->container['shipment_method'] === null) {
@@ -1570,7 +1540,7 @@ class Order implements ModelInterface, ArrayAccess
     public function setPaymentMethod($payment_method)
     {
         $allowedValues = $this->getPaymentMethodAllowableValues();
-        if (!in_array($payment_method, $allowedValues)) {
+        if (!is_null($payment_method) && !in_array($payment_method, $allowedValues)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value for 'payment_method', must be one of '%s'",

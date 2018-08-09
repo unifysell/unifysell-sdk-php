@@ -82,12 +82,52 @@ class TasksApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test case for getTaskV0
+     *
+     * Show a task.
+     *
+     */
+    public function testGetTaskV0()
+    {
+    }
+
+    /**
+     * Test case for getTaskV1
+     *
+     * Show a task.
+     *
+     */
+    public function testGetTaskV1()
+    {
+    }
+
+    /**
      * Test case for listTasks
      *
      * List my tasks.
      *
      */
     public function testListTasks()
+    {
+    }
+
+    /**
+     * Test case for listTasksV0
+     *
+     * List my tasks.
+     *
+     */
+    public function testListTasksV0()
+    {
+    }
+
+    /**
+     * Test case for listTasksV1
+     *
+     * List my tasks.
+     *
+     */
+    public function testListTasksV1()
     {
     }
 }

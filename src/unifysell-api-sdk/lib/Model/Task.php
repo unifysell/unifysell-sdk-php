@@ -237,7 +237,7 @@ class Task implements ModelInterface, ArrayAccess
     /**
      * Sets id
      *
-     * @param int $id id
+     * @param int $id The unique identifier.
      *
      * @return $this
      */
@@ -261,7 +261,7 @@ class Task implements ModelInterface, ArrayAccess
     /**
      * Sets status
      *
-     * @param string $status status
+     * @param string $status Gives the state of progress of the related action that was requested.
      *
      * @return $this
      */

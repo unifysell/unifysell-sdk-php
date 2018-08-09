@@ -58,7 +58,6 @@ class Meta implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'call_id' => 'int',
         'pagination' => '\Unifysell\SDK\Model\Pagination'
     ];
 
@@ -68,7 +67,6 @@ class Meta implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'call_id' => null,
         'pagination' => null
     ];
 
@@ -99,7 +97,6 @@ class Meta implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'call_id' => 'callId',
         'pagination' => 'pagination'
     ];
 
@@ -109,7 +106,6 @@ class Meta implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'call_id' => 'setCallId',
         'pagination' => 'setPagination'
     ];
 
@@ -119,7 +115,6 @@ class Meta implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'call_id' => 'getCallId',
         'pagination' => 'getPagination'
     ];
 
@@ -183,7 +178,6 @@ class Meta implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['call_id'] = isset($data['call_id']) ? $data['call_id'] : null;
         $this->container['pagination'] = isset($data['pagination']) ? $data['pagination'] : null;
     }
 
@@ -196,9 +190,6 @@ class Meta implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['call_id'] === null) {
-            $invalidProperties[] = "'call_id' can't be null";
-        }
         if ($this->container['pagination'] === null) {
             $invalidProperties[] = "'pagination' can't be null";
         }
@@ -214,39 +205,12 @@ class Meta implements ModelInterface, ArrayAccess
     public function valid()
     {
 
-        if ($this->container['call_id'] === null) {
-            return false;
-        }
         if ($this->container['pagination'] === null) {
             return false;
         }
         return true;
     }
 
-
-    /**
-     * Gets call_id
-     *
-     * @return int
-     */
-    public function getCallId()
-    {
-        return $this->container['call_id'];
-    }
-
-    /**
-     * Sets call_id
-     *
-     * @param int $call_id Used to idenfity your request.
-     *
-     * @return $this
-     */
-    public function setCallId($call_id)
-    {
-        $this->container['call_id'] = $call_id;
-
-        return $this;
-    }
 
     /**
      * Gets pagination

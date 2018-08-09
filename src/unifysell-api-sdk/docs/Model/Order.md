@@ -5,14 +5,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **aftertax_total** | [**\Unifysell\SDK\Model\Money**](Money.md) |  | 
 **amazon_order_id** | **string** | The official internal amazon id. | [optional] 
-**buyer_id** | **int** | Referencing the buyer. | 
+**buyer_id** | **int** | Referencing the buyer. | [optional] 
 **comment_client** | **string** | A comment by the buyer. | [optional] 
 **comment_merchant** | **string** | A comment by the seller. | [optional] 
 **date_approved** | **string** | The date when the order started. | [optional] 
-**date_cancelled** | **string** | If the order is cancelled, the time when the cancelation happend. | 
+**date_cancelled** | **string** | If the order is cancelled, the time when the cancelation happend. | [optional] 
 **date_changed** | **string** | Last time the order was mutated. | 
 **date_created** | **string** | The first time the order was seen by unifysell. | 
-**date_paid** | **string** | The time when the order was paid by the buyer. | 
+**date_paid** | **string** | The time when the order was paid by the buyer. | [optional] 
 **date_shipped** | **string** | The time when the order was marked as shipped. | [optional] 
 **earliest_ship_date** | **string** | Together with latestShipDate it gives the allowed shipping interval. | [optional] 
 **ebay_order_id** | **string** | The order id set by eBay. | [optional] 
@@ -36,9 +36,9 @@ Name | Type | Description | Notes
 **order_no** | **string** | The official rakuten identifier of the order. | [optional] 
 **order_type** | **string** | The type of the order. Only Japan allows other than StandardOrder. | [optional] 
 **package_service** | **string** | The name of the package service sending the shipment. | [optional] 
-**payment_method** | **string** | The method the buyer used to pay. | 
+**payment_method** | **string** | The method the buyer used to pay. | [optional] 
 **position_ids** | **string[]** | List of all position references. | [optional] 
-**pretax_total** | [**\Unifysell\SDK\Model\Money**](Money.md) |  | 
+**pretax_total** | [**\Unifysell\SDK\Model\Money**](Money.md) |  | [optional] 
 **purchased_order_number** | **string** | The amazon purchase order (PO) number entered by the buyer at checkout. | [optional] 
 **refund_requested** | **bool** | Defines if a refund was requested. | [optional] 
 **remote_allowed_shipping_methods** | **string[]** | A list of allowed shipping methods. | [optional] 
