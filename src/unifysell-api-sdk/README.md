@@ -163,6 +163,8 @@ Class | Method | HTTP request | Description
  - [CreateChannelRequest](docs/Model/CreateChannelRequest.md)
  - [CreateChannelResponse](docs/Model/CreateChannelResponse.md)
  - [CreateListingRequest](docs/Model/CreateListingRequest.md)
+ - [CreateListingRequestDeliveryOptions](docs/Model/CreateListingRequestDeliveryOptions.md)
+ - [CreateListingRequestPictures](docs/Model/CreateListingRequestPictures.md)
  - [CreateListingResponse](docs/Model/CreateListingResponse.md)
  - [CreateMarketplaceRequest](docs/Model/CreateMarketplaceRequest.md)
  - [CreateMarketplaceResponse](docs/Model/CreateMarketplaceResponse.md)

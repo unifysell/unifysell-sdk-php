@@ -58,7 +58,22 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        
+        'availability' => 'int',
+        'category_ids' => 'int[]',
+        'condition' => 'string',
+        'date_finished' => 'string',
+        'date_started' => 'string',
+        'delivery' => 'string',
+        'delivery_options' => '\Unifysell\SDK\Model\CreateListingRequestDeliveryOptions[]',
+        'description' => 'string',
+        'marketplace_id' => 'int',
+        'pictures' => '\Unifysell\SDK\Model\CreateListingRequestPictures[]',
+        'price' => '\Unifysell\SDK\Model\Money',
+        'promotions' => 'string[]',
+        'quantity' => 'int',
+        'template_id' => 'string',
+        'title' => 'string',
+        'warranty' => 'string'
     ];
 
     /**
@@ -67,7 +82,22 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        
+        'availability' => null,
+        'category_ids' => null,
+        'condition' => null,
+        'date_finished' => 'datetime',
+        'date_started' => 'datetime',
+        'delivery' => null,
+        'delivery_options' => null,
+        'description' => null,
+        'marketplace_id' => null,
+        'pictures' => null,
+        'price' => null,
+        'promotions' => null,
+        'quantity' => null,
+        'template_id' => null,
+        'title' => null,
+        'warranty' => null
     ];
 
     /**
@@ -97,7 +127,22 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        
+        'availability' => 'availability',
+        'category_ids' => 'categoryIds',
+        'condition' => 'condition',
+        'date_finished' => 'dateFinished',
+        'date_started' => 'dateStarted',
+        'delivery' => 'delivery',
+        'delivery_options' => 'deliveryOptions',
+        'description' => 'description',
+        'marketplace_id' => 'marketplaceId',
+        'pictures' => 'pictures',
+        'price' => 'price',
+        'promotions' => 'promotions',
+        'quantity' => 'quantity',
+        'template_id' => 'templateId',
+        'title' => 'title',
+        'warranty' => 'warranty'
     ];
 
     /**
@@ -106,7 +151,22 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        
+        'availability' => 'setAvailability',
+        'category_ids' => 'setCategoryIds',
+        'condition' => 'setCondition',
+        'date_finished' => 'setDateFinished',
+        'date_started' => 'setDateStarted',
+        'delivery' => 'setDelivery',
+        'delivery_options' => 'setDeliveryOptions',
+        'description' => 'setDescription',
+        'marketplace_id' => 'setMarketplaceId',
+        'pictures' => 'setPictures',
+        'price' => 'setPrice',
+        'promotions' => 'setPromotions',
+        'quantity' => 'setQuantity',
+        'template_id' => 'setTemplateId',
+        'title' => 'setTitle',
+        'warranty' => 'setWarranty'
     ];
 
     /**
@@ -115,7 +175,22 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        
+        'availability' => 'getAvailability',
+        'category_ids' => 'getCategoryIds',
+        'condition' => 'getCondition',
+        'date_finished' => 'getDateFinished',
+        'date_started' => 'getDateStarted',
+        'delivery' => 'getDelivery',
+        'delivery_options' => 'getDeliveryOptions',
+        'description' => 'getDescription',
+        'marketplace_id' => 'getMarketplaceId',
+        'pictures' => 'getPictures',
+        'price' => 'getPrice',
+        'promotions' => 'getPromotions',
+        'quantity' => 'getQuantity',
+        'template_id' => 'getTemplateId',
+        'title' => 'getTitle',
+        'warranty' => 'getWarranty'
     ];
 
     /**
@@ -159,8 +234,61 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
+    const CONDITION__NEW = 'new';
+    const CONDITION_ORIGINAL_PACKAGE = 'originalPackage';
+    const CONDITION_USED = 'used';
+    const CONDITION_COLLECTOR = 'collector';
+    const CONDITION_DAMAGED = 'damaged';
+    const PROMOTIONS__5_OFF = '5% off';
+    const PROMOTIONS__10_OFF = '10% off';
+    const WARRANTY_NONE = 'none';
+    const WARRANTY__1_YEAR = '1 year';
+    const WARRANTY__2_YEARS = '2 years';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getConditionAllowableValues()
+    {
+        return [
+            self::CONDITION__NEW,
+            self::CONDITION_ORIGINAL_PACKAGE,
+            self::CONDITION_USED,
+            self::CONDITION_COLLECTOR,
+            self::CONDITION_DAMAGED,
+        ];
+    }
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getPromotionsAllowableValues()
+    {
+        return [
+            self::PROMOTIONS__5_OFF,
+            self::PROMOTIONS__10_OFF,
+        ];
+    }
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getWarrantyAllowableValues()
+    {
+        return [
+            self::WARRANTY_NONE,
+            self::WARRANTY__1_YEAR,
+            self::WARRANTY__2_YEARS,
+        ];
+    }
     
 
     /**
@@ -178,6 +306,22 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        $this->container['availability'] = isset($data['availability']) ? $data['availability'] : null;
+        $this->container['category_ids'] = isset($data['category_ids']) ? $data['category_ids'] : null;
+        $this->container['condition'] = isset($data['condition']) ? $data['condition'] : null;
+        $this->container['date_finished'] = isset($data['date_finished']) ? $data['date_finished'] : null;
+        $this->container['date_started'] = isset($data['date_started']) ? $data['date_started'] : null;
+        $this->container['delivery'] = isset($data['delivery']) ? $data['delivery'] : null;
+        $this->container['delivery_options'] = isset($data['delivery_options']) ? $data['delivery_options'] : null;
+        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
+        $this->container['marketplace_id'] = isset($data['marketplace_id']) ? $data['marketplace_id'] : null;
+        $this->container['pictures'] = isset($data['pictures']) ? $data['pictures'] : null;
+        $this->container['price'] = isset($data['price']) ? $data['price'] : null;
+        $this->container['promotions'] = isset($data['promotions']) ? $data['promotions'] : null;
+        $this->container['quantity'] = isset($data['quantity']) ? $data['quantity'] : null;
+        $this->container['template_id'] = isset($data['template_id']) ? $data['template_id'] : null;
+        $this->container['title'] = isset($data['title']) ? $data['title'] : null;
+        $this->container['warranty'] = isset($data['warranty']) ? $data['warranty'] : null;
     }
 
     /**
@@ -188,6 +332,58 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        if ($this->container['availability'] === null) {
+            $invalidProperties[] = "'availability' can't be null";
+        }
+        if ($this->container['category_ids'] === null) {
+            $invalidProperties[] = "'category_ids' can't be null";
+        }
+        if ($this->container['condition'] === null) {
+            $invalidProperties[] = "'condition' can't be null";
+        }
+        $allowedValues = $this->getConditionAllowableValues();
+        if (!in_array($this->container['condition'], $allowedValues)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'condition', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['delivery'] === null) {
+            $invalidProperties[] = "'delivery' can't be null";
+        }
+        if ($this->container['delivery_options'] === null) {
+            $invalidProperties[] = "'delivery_options' can't be null";
+        }
+        if ($this->container['description'] === null) {
+            $invalidProperties[] = "'description' can't be null";
+        }
+        if ($this->container['marketplace_id'] === null) {
+            $invalidProperties[] = "'marketplace_id' can't be null";
+        }
+        if ($this->container['pictures'] === null) {
+            $invalidProperties[] = "'pictures' can't be null";
+        }
+        if ($this->container['price'] === null) {
+            $invalidProperties[] = "'price' can't be null";
+        }
+        if ($this->container['quantity'] === null) {
+            $invalidProperties[] = "'quantity' can't be null";
+        }
+        if ($this->container['title'] === null) {
+            $invalidProperties[] = "'title' can't be null";
+        }
+        if ($this->container['warranty'] === null) {
+            $invalidProperties[] = "'warranty' can't be null";
+        }
+        $allowedValues = $this->getWarrantyAllowableValues();
+        if (!in_array($this->container['warranty'], $allowedValues)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'warranty', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
 
         return $invalidProperties;
     }
@@ -201,9 +397,464 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
     public function valid()
     {
 
+        if ($this->container['availability'] === null) {
+            return false;
+        }
+        if ($this->container['category_ids'] === null) {
+            return false;
+        }
+        if ($this->container['condition'] === null) {
+            return false;
+        }
+        $allowedValues = $this->getConditionAllowableValues();
+        if (!in_array($this->container['condition'], $allowedValues)) {
+            return false;
+        }
+        if ($this->container['delivery'] === null) {
+            return false;
+        }
+        if ($this->container['delivery_options'] === null) {
+            return false;
+        }
+        if ($this->container['description'] === null) {
+            return false;
+        }
+        if ($this->container['marketplace_id'] === null) {
+            return false;
+        }
+        if ($this->container['pictures'] === null) {
+            return false;
+        }
+        if ($this->container['price'] === null) {
+            return false;
+        }
+        if ($this->container['quantity'] === null) {
+            return false;
+        }
+        if ($this->container['title'] === null) {
+            return false;
+        }
+        if ($this->container['warranty'] === null) {
+            return false;
+        }
+        $allowedValues = $this->getWarrantyAllowableValues();
+        if (!in_array($this->container['warranty'], $allowedValues)) {
+            return false;
+        }
         return true;
     }
 
+
+    /**
+     * Gets availability
+     *
+     * @return int
+     */
+    public function getAvailability()
+    {
+        return $this->container['availability'];
+    }
+
+    /**
+     * Sets availability
+     *
+     * @param int $availability Describes if an article is available right now or when it will be available again.           Measured in days. Set it to 0 if the article is available in stock.
+     *
+     * @return $this
+     */
+    public function setAvailability($availability)
+    {
+        $this->container['availability'] = $availability;
+
+        return $this;
+    }
+
+    /**
+     * Gets category_ids
+     *
+     * @return int[]
+     */
+    public function getCategoryIds()
+    {
+        return $this->container['category_ids'];
+    }
+
+    /**
+     * Sets category_ids
+     *
+     * @param int[] $category_ids Give a list of the ids of the listings category.
+     *
+     * @return $this
+     */
+    public function setCategoryIds($category_ids)
+    {
+        $this->container['category_ids'] = $category_ids;
+
+        return $this;
+    }
+
+    /**
+     * Gets condition
+     *
+     * @return string
+     */
+    public function getCondition()
+    {
+        return $this->container['condition'];
+    }
+
+    /**
+     * Sets condition
+     *
+     * @param string $condition Describes in what condition the sold article is in. See the enum values for more information.
+     *
+     * @return $this
+     */
+    public function setCondition($condition)
+    {
+        $allowedValues = $this->getConditionAllowableValues();
+        if (!in_array($condition, $allowedValues)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'condition', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['condition'] = $condition;
+
+        return $this;
+    }
+
+    /**
+     * Gets date_finished
+     *
+     * @return string
+     */
+    public function getDateFinished()
+    {
+        return $this->container['date_finished'];
+    }
+
+    /**
+     * Sets date_finished
+     *
+     * @param string $date_finished This timestamps defines when the auction ends.
+     *
+     * @return $this
+     */
+    public function setDateFinished($date_finished)
+    {
+        $this->container['date_finished'] = $date_finished;
+
+        return $this;
+    }
+
+    /**
+     * Gets date_started
+     *
+     * @return string
+     */
+    public function getDateStarted()
+    {
+        return $this->container['date_started'];
+    }
+
+    /**
+     * Sets date_started
+     *
+     * @param string $date_started This timestamps gives the moment when the listing will become available.
+     *
+     * @return $this
+     */
+    public function setDateStarted($date_started)
+    {
+        $this->container['date_started'] = $date_started;
+
+        return $this;
+    }
+
+    /**
+     * Gets delivery
+     *
+     * @return string
+     */
+    public function getDelivery()
+    {
+        return $this->container['delivery'];
+    }
+
+    /**
+     * Sets delivery
+     *
+     * @param string $delivery Describes the delivery option for the article.
+     *
+     * @return $this
+     */
+    public function setDelivery($delivery)
+    {
+        $this->container['delivery'] = $delivery;
+
+        return $this;
+    }
+
+    /**
+     * Gets delivery_options
+     *
+     * @return \Unifysell\SDK\Model\CreateListingRequestDeliveryOptions[]
+     */
+    public function getDeliveryOptions()
+    {
+        return $this->container['delivery_options'];
+    }
+
+    /**
+     * Sets delivery_options
+     *
+     * @param \Unifysell\SDK\Model\CreateListingRequestDeliveryOptions[] $delivery_options Defines the shipping options available for the package. This is only required for several platforms. Give a list of available options.
+     *
+     * @return $this
+     */
+    public function setDeliveryOptions($delivery_options)
+    {
+        $this->container['delivery_options'] = $delivery_options;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string $description A text describing the sold article.
+     *
+     * @return $this
+     */
+    public function setDescription($description)
+    {
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets marketplace_id
+     *
+     * @return int
+     */
+    public function getMarketplaceId()
+    {
+        return $this->container['marketplace_id'];
+    }
+
+    /**
+     * Sets marketplace_id
+     *
+     * @param int $marketplace_id Id of the marketplace to sell the article on.
+     *
+     * @return $this
+     */
+    public function setMarketplaceId($marketplace_id)
+    {
+        $this->container['marketplace_id'] = $marketplace_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets pictures
+     *
+     * @return \Unifysell\SDK\Model\CreateListingRequestPictures[]
+     */
+    public function getPictures()
+    {
+        return $this->container['pictures'];
+    }
+
+    /**
+     * Sets pictures
+     *
+     * @param \Unifysell\SDK\Model\CreateListingRequestPictures[] $pictures Give a list of pictures.
+     *
+     * @return $this
+     */
+    public function setPictures($pictures)
+    {
+        $this->container['pictures'] = $pictures;
+
+        return $this;
+    }
+
+    /**
+     * Gets price
+     *
+     * @return \Unifysell\SDK\Model\Money
+     */
+    public function getPrice()
+    {
+        return $this->container['price'];
+    }
+
+    /**
+     * Sets price
+     *
+     * @param \Unifysell\SDK\Model\Money $price price
+     *
+     * @return $this
+     */
+    public function setPrice($price)
+    {
+        $this->container['price'] = $price;
+
+        return $this;
+    }
+
+    /**
+     * Gets promotions
+     *
+     * @return string[]
+     */
+    public function getPromotions()
+    {
+        return $this->container['promotions'];
+    }
+
+    /**
+     * Sets promotions
+     *
+     * @param string[] $promotions A list of promotion codes that are available for the listing.
+     *
+     * @return $this
+     */
+    public function setPromotions($promotions)
+    {
+        $allowedValues = $this->getPromotionsAllowableValues();
+        if (!is_null($promotions) && array_diff($promotions, $allowedValues)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'promotions', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['promotions'] = $promotions;
+
+        return $this;
+    }
+
+    /**
+     * Gets quantity
+     *
+     * @return int
+     */
+    public function getQuantity()
+    {
+        return $this->container['quantity'];
+    }
+
+    /**
+     * Sets quantity
+     *
+     * @param int $quantity The amount of articles available for this listing.
+     *
+     * @return $this
+     */
+    public function setQuantity($quantity)
+    {
+        $this->container['quantity'] = $quantity;
+
+        return $this;
+    }
+
+    /**
+     * Gets template_id
+     *
+     * @return string
+     */
+    public function getTemplateId()
+    {
+        return $this->container['template_id'];
+    }
+
+    /**
+     * Sets template_id
+     *
+     * @param string $template_id Give the id of an existing template to be applied on the listing description.
+     *
+     * @return $this
+     */
+    public function setTemplateId($template_id)
+    {
+        $this->container['template_id'] = $template_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->container['title'];
+    }
+
+    /**
+     * Sets title
+     *
+     * @param string $title The name of the article.
+     *
+     * @return $this
+     */
+    public function setTitle($title)
+    {
+        $this->container['title'] = $title;
+
+        return $this;
+    }
+
+    /**
+     * Gets warranty
+     *
+     * @return string
+     */
+    public function getWarranty()
+    {
+        return $this->container['warranty'];
+    }
+
+    /**
+     * Sets warranty
+     *
+     * @param string $warranty Choose a warranty for the product. Options are defined in an enum.
+     *
+     * @return $this
+     */
+    public function setWarranty($warranty)
+    {
+        $allowedValues = $this->getWarrantyAllowableValues();
+        if (!in_array($warranty, $allowedValues)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'warranty', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['warranty'] = $warranty;
+
+        return $this;
+    }
     /**
      * Returns true if offset exists. False otherwise.
      *

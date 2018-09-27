@@ -76,4 +76,116 @@ class CreateListingRequestTest extends \PHPUnit_Framework_TestCase
     public function testCreateListingRequest()
     {
     }
+
+    /**
+     * Test attribute "availability"
+     */
+    public function testPropertyAvailability()
+    {
+    }
+
+    /**
+     * Test attribute "category_ids"
+     */
+    public function testPropertyCategoryIds()
+    {
+    }
+
+    /**
+     * Test attribute "condition"
+     */
+    public function testPropertyCondition()
+    {
+    }
+
+    /**
+     * Test attribute "date_finished"
+     */
+    public function testPropertyDateFinished()
+    {
+    }
+
+    /**
+     * Test attribute "date_started"
+     */
+    public function testPropertyDateStarted()
+    {
+    }
+
+    /**
+     * Test attribute "delivery"
+     */
+    public function testPropertyDelivery()
+    {
+    }
+
+    /**
+     * Test attribute "delivery_options"
+     */
+    public function testPropertyDeliveryOptions()
+    {
+    }
+
+    /**
+     * Test attribute "description"
+     */
+    public function testPropertyDescription()
+    {
+    }
+
+    /**
+     * Test attribute "marketplace_id"
+     */
+    public function testPropertyMarketplaceId()
+    {
+    }
+
+    /**
+     * Test attribute "pictures"
+     */
+    public function testPropertyPictures()
+    {
+    }
+
+    /**
+     * Test attribute "price"
+     */
+    public function testPropertyPrice()
+    {
+    }
+
+    /**
+     * Test attribute "promotions"
+     */
+    public function testPropertyPromotions()
+    {
+    }
+
+    /**
+     * Test attribute "quantity"
+     */
+    public function testPropertyQuantity()
+    {
+    }
+
+    /**
+     * Test attribute "template_id"
+     */
+    public function testPropertyTemplateId()
+    {
+    }
+
+    /**
+     * Test attribute "title"
+     */
+    public function testPropertyTitle()
+    {
+    }
+
+    /**
+     * Test attribute "warranty"
+     */
+    public function testPropertyWarranty()
+    {
+    }
 }
