@@ -27,13 +27,13 @@ You can have a look at the `example/complete-example.php` file for a basic usage
 
 ### Make your first request
 
-    $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey(
+    $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey(
         'Authorization', 
         $keycloakClient->getAccessToken()->getToken()
     );
     $config->setApiKeyPrefix('Authorization', 'Bearer');
     
-    $apiInstance = new Swagger\Client\Api\OrdersApi(
+    $apiInstance = new Unifysell\SDK\Api\OrdersApi(
         new GuzzleHttp\Client(),
         $config
     );
