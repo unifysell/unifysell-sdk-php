@@ -169,6 +169,13 @@ class CreateListingRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test attribute "seller_sku"
+     */
+    public function testPropertySellerSku()
+    {
+    }
+
+    /**
      * Test attribute "template_id"
      */
     public function testPropertyTemplateId()

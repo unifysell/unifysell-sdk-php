@@ -71,6 +71,7 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
         'price' => '\Unifysell\SDK\Model\Money',
         'promotions' => 'string[]',
         'quantity' => 'int',
+        'seller_sku' => 'string',
         'template_id' => 'string',
         'title' => 'string',
         'warranty' => 'string'
@@ -95,6 +96,7 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
         'price' => null,
         'promotions' => null,
         'quantity' => null,
+        'seller_sku' => null,
         'template_id' => null,
         'title' => null,
         'warranty' => null
@@ -140,6 +142,7 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
         'price' => 'price',
         'promotions' => 'promotions',
         'quantity' => 'quantity',
+        'seller_sku' => 'sellerSku',
         'template_id' => 'templateId',
         'title' => 'title',
         'warranty' => 'warranty'
@@ -164,6 +167,7 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
         'price' => 'setPrice',
         'promotions' => 'setPromotions',
         'quantity' => 'setQuantity',
+        'seller_sku' => 'setSellerSku',
         'template_id' => 'setTemplateId',
         'title' => 'setTitle',
         'warranty' => 'setWarranty'
@@ -188,6 +192,7 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
         'price' => 'getPrice',
         'promotions' => 'getPromotions',
         'quantity' => 'getQuantity',
+        'seller_sku' => 'getSellerSku',
         'template_id' => 'getTemplateId',
         'title' => 'getTitle',
         'warranty' => 'getWarranty'
@@ -319,6 +324,7 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
         $this->container['price'] = isset($data['price']) ? $data['price'] : null;
         $this->container['promotions'] = isset($data['promotions']) ? $data['promotions'] : null;
         $this->container['quantity'] = isset($data['quantity']) ? $data['quantity'] : null;
+        $this->container['seller_sku'] = isset($data['seller_sku']) ? $data['seller_sku'] : null;
         $this->container['template_id'] = isset($data['template_id']) ? $data['template_id'] : null;
         $this->container['title'] = isset($data['title']) ? $data['title'] : null;
         $this->container['warranty'] = isset($data['warranty']) ? $data['warranty'] : null;
@@ -370,6 +376,9 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
         }
         if ($this->container['quantity'] === null) {
             $invalidProperties[] = "'quantity' can't be null";
+        }
+        if ($this->container['seller_sku'] === null) {
+            $invalidProperties[] = "'seller_sku' can't be null";
         }
         if ($this->container['title'] === null) {
             $invalidProperties[] = "'title' can't be null";
@@ -429,6 +438,9 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
             return false;
         }
         if ($this->container['quantity'] === null) {
+            return false;
+        }
+        if ($this->container['seller_sku'] === null) {
             return false;
         }
         if ($this->container['title'] === null) {
@@ -771,6 +783,30 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
     public function setQuantity($quantity)
     {
         $this->container['quantity'] = $quantity;
+
+        return $this;
+    }
+
+    /**
+     * Gets seller_sku
+     *
+     * @return string
+     */
+    public function getSellerSku()
+    {
+        return $this->container['seller_sku'];
+    }
+
+    /**
+     * Sets seller_sku
+     *
+     * @param string $seller_sku Identifier for sellers internal referencing.
+     *
+     * @return $this
+     */
+    public function setSellerSku($seller_sku)
+    {
+        $this->container['seller_sku'] = $seller_sku;
 
         return $this;
     }

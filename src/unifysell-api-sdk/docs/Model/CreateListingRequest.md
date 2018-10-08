@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **price** | [**\Unifysell\SDK\Model\Money**](Money.md) |  | 
 **promotions** | **string[]** | A list of promotion codes that are available for the listing. | [optional] 
 **quantity** | **int** | The amount of articles available for this listing. | 
+**seller_sku** | **string** | Identifier for sellers internal referencing. | 
 **template_id** | **string** | Give the id of an existing template to be applied on the listing description. | [optional] 
 **title** | **string** | The name of the article. | 
 **warranty** | **string** | Choose a warranty for the product. Options are defined in an enum. | 

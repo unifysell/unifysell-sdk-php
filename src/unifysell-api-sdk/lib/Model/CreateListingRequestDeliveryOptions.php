@@ -490,7 +490,7 @@ class CreateListingRequestDeliveryOptions implements ModelInterface, ArrayAccess
     /**
      * Sets shipping_is_cumulative
      *
-     * @param bool $shipping_is_cumulative This is only available for ricardo.
+     * @param bool $shipping_is_cumulative Is the shipping price paid per article or per sending? This is only available for ricardo.
      *
      * @return $this
      */
