@@ -259,6 +259,7 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
     const WARRANTY_NONE = 'none';
     const WARRANTY__1_YEAR = '1 year';
     const WARRANTY__2_YEARS = '2 years';
+    const WARRANTY_SEE_DESCRIPTION = 'see description';
     
 
     
@@ -302,6 +303,7 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
             self::WARRANTY_NONE,
             self::WARRANTY__1_YEAR,
             self::WARRANTY__2_YEARS,
+            self::WARRANTY_SEE_DESCRIPTION,
         ];
     }
     
