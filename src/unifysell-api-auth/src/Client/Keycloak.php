@@ -79,7 +79,6 @@ class Keycloak
         try {
             $tokenObject = $this->getProvider()->getAccessToken('client_credentials');
             $this->setAccessToken($tokenObject);
-            echo 'Successfully created token.';
             return $this->getAccessToken();
         } catch (\Exception $e) {
             exit('Failed to create access token: ' . $e->getMessage());
