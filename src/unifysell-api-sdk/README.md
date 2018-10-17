@@ -94,6 +94,10 @@ Class | Method | HTTP request | Description
 *BuyerApi* | [**getBuyerV1**](docs/Api/BuyerApi.md#getbuyerv1) | **GET** /api/v1/buyer/{id} | Show buyer
 *BuyerApi* | [**listBuyers**](docs/Api/BuyerApi.md#listbuyers) | **GET** /api/buyer | List buyers
 *BuyerApi* | [**listBuyersV1**](docs/Api/BuyerApi.md#listbuyersv1) | **GET** /api/v1/buyer | List buyers
+*CategoryApi* | [**getCategory**](docs/Api/CategoryApi.md#getcategory) | **GET** /api/category/{id} | Show category
+*CategoryApi* | [**getCategoryV1**](docs/Api/CategoryApi.md#getcategoryv1) | **GET** /api/v1/category/{id} | Show category
+*CategoryApi* | [**listCategories**](docs/Api/CategoryApi.md#listcategories) | **GET** /api/category | List categories
+*CategoryApi* | [**listCategoriesV1**](docs/Api/CategoryApi.md#listcategoriesv1) | **GET** /api/v1/category | List categories
 *ChannelsApi* | [**createChannel**](docs/Api/ChannelsApi.md#createchannel) | **POST** /api/channel | create a new channel
 *ChannelsApi* | [**createChannelV1**](docs/Api/ChannelsApi.md#createchannelv1) | **POST** /api/v1/channel | create a new channel
 *ChannelsApi* | [**getChannel**](docs/Api/ChannelsApi.md#getchannel) | **GET** /api/channel/{id} | Show channel
@@ -157,6 +161,9 @@ Class | Method | HTTP request | Description
  - [Buyer](docs/Model/Buyer.md)
  - [BuyerResponse](docs/Model/BuyerResponse.md)
  - [BuyersResponse](docs/Model/BuyersResponse.md)
+ - [CategoriesResponse](docs/Model/CategoriesResponse.md)
+ - [Category](docs/Model/Category.md)
+ - [CategoryResponse](docs/Model/CategoryResponse.md)
  - [Channel](docs/Model/Channel.md)
  - [ChannelResponse](docs/Model/ChannelResponse.md)
  - [ChannelsResponse](docs/Model/ChannelsResponse.md)

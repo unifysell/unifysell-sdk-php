@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **delivery_options** | [**\Unifysell\SDK\Model\CreateListingRequestDeliveryOptions[]**](CreateListingRequestDeliveryOptions.md) | Defines the shipping options available for the package. This is only required for several platforms. Give a list of available options. | 
 **description** | **string** | A text describing the sold article. | 
 **marketplace_id** | **int** | Id of the marketplace to sell the article on. | 
+**payment_description** | **string** | Detailed description of available payment options. | [optional] 
 **pictures** | [**\Unifysell\SDK\Model\CreateListingRequestPictures[]**](CreateListingRequestPictures.md) | Give a list of pictures. | 
 **price** | [**\Unifysell\SDK\Model\Money**](Money.md) |  | 
 **promotions** | **string[]** | A list of promotion codes that are available for the listing. | [optional] 
@@ -20,6 +21,7 @@ Name | Type | Description | Notes
 **template_id** | **string** | Give the id of an existing template to be applied on the listing description. | [optional] 
 **title** | **string** | The name of the article. | 
 **warranty** | **string** | Choose a warranty for the product. Options are defined in an enum. | 
+**warranty_description** | **string** | Give a more detailed description about your warranties. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

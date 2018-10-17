@@ -67,6 +67,7 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
         'delivery_options' => '\Unifysell\SDK\Model\CreateListingRequestDeliveryOptions[]',
         'description' => 'string',
         'marketplace_id' => 'int',
+        'payment_description' => 'string',
         'pictures' => '\Unifysell\SDK\Model\CreateListingRequestPictures[]',
         'price' => '\Unifysell\SDK\Model\Money',
         'promotions' => 'string[]',
@@ -74,7 +75,8 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
         'seller_sku' => 'string',
         'template_id' => 'string',
         'title' => 'string',
-        'warranty' => 'string'
+        'warranty' => 'string',
+        'warranty_description' => 'string'
     ];
 
     /**
@@ -92,6 +94,7 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
         'delivery_options' => null,
         'description' => null,
         'marketplace_id' => null,
+        'payment_description' => null,
         'pictures' => null,
         'price' => null,
         'promotions' => null,
@@ -99,7 +102,8 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
         'seller_sku' => null,
         'template_id' => null,
         'title' => null,
-        'warranty' => null
+        'warranty' => null,
+        'warranty_description' => null
     ];
 
     /**
@@ -138,6 +142,7 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
         'delivery_options' => 'deliveryOptions',
         'description' => 'description',
         'marketplace_id' => 'marketplaceId',
+        'payment_description' => 'paymentDescription',
         'pictures' => 'pictures',
         'price' => 'price',
         'promotions' => 'promotions',
@@ -145,7 +150,8 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
         'seller_sku' => 'sellerSku',
         'template_id' => 'templateId',
         'title' => 'title',
-        'warranty' => 'warranty'
+        'warranty' => 'warranty',
+        'warranty_description' => 'warrantyDescription'
     ];
 
     /**
@@ -163,6 +169,7 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
         'delivery_options' => 'setDeliveryOptions',
         'description' => 'setDescription',
         'marketplace_id' => 'setMarketplaceId',
+        'payment_description' => 'setPaymentDescription',
         'pictures' => 'setPictures',
         'price' => 'setPrice',
         'promotions' => 'setPromotions',
@@ -170,7 +177,8 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
         'seller_sku' => 'setSellerSku',
         'template_id' => 'setTemplateId',
         'title' => 'setTitle',
-        'warranty' => 'setWarranty'
+        'warranty' => 'setWarranty',
+        'warranty_description' => 'setWarrantyDescription'
     ];
 
     /**
@@ -188,6 +196,7 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
         'delivery_options' => 'getDeliveryOptions',
         'description' => 'getDescription',
         'marketplace_id' => 'getMarketplaceId',
+        'payment_description' => 'getPaymentDescription',
         'pictures' => 'getPictures',
         'price' => 'getPrice',
         'promotions' => 'getPromotions',
@@ -195,7 +204,8 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
         'seller_sku' => 'getSellerSku',
         'template_id' => 'getTemplateId',
         'title' => 'getTitle',
-        'warranty' => 'getWarranty'
+        'warranty' => 'getWarranty',
+        'warranty_description' => 'getWarrantyDescription'
     ];
 
     /**
@@ -320,6 +330,7 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
         $this->container['delivery_options'] = isset($data['delivery_options']) ? $data['delivery_options'] : null;
         $this->container['description'] = isset($data['description']) ? $data['description'] : null;
         $this->container['marketplace_id'] = isset($data['marketplace_id']) ? $data['marketplace_id'] : null;
+        $this->container['payment_description'] = isset($data['payment_description']) ? $data['payment_description'] : null;
         $this->container['pictures'] = isset($data['pictures']) ? $data['pictures'] : null;
         $this->container['price'] = isset($data['price']) ? $data['price'] : null;
         $this->container['promotions'] = isset($data['promotions']) ? $data['promotions'] : null;
@@ -328,6 +339,7 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
         $this->container['template_id'] = isset($data['template_id']) ? $data['template_id'] : null;
         $this->container['title'] = isset($data['title']) ? $data['title'] : null;
         $this->container['warranty'] = isset($data['warranty']) ? $data['warranty'] : null;
+        $this->container['warranty_description'] = isset($data['warranty_description']) ? $data['warranty_description'] : null;
     }
 
     /**
@@ -683,6 +695,30 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Gets payment_description
+     *
+     * @return string
+     */
+    public function getPaymentDescription()
+    {
+        return $this->container['payment_description'];
+    }
+
+    /**
+     * Sets payment_description
+     *
+     * @param string $payment_description Detailed description of available payment options.
+     *
+     * @return $this
+     */
+    public function setPaymentDescription($payment_description)
+    {
+        $this->container['payment_description'] = $payment_description;
+
+        return $this;
+    }
+
+    /**
      * Gets pictures
      *
      * @return \Unifysell\SDK\Model\CreateListingRequestPictures[]
@@ -888,6 +924,30 @@ class CreateListingRequest implements ModelInterface, ArrayAccess
             );
         }
         $this->container['warranty'] = $warranty;
+
+        return $this;
+    }
+
+    /**
+     * Gets warranty_description
+     *
+     * @return string
+     */
+    public function getWarrantyDescription()
+    {
+        return $this->container['warranty_description'];
+    }
+
+    /**
+     * Sets warranty_description
+     *
+     * @param string $warranty_description Give a more detailed description about your warranties.
+     *
+     * @return $this
+     */
+    public function setWarrantyDescription($warranty_description)
+    {
+        $this->container['warranty_description'] = $warranty_description;
 
         return $this;
     }

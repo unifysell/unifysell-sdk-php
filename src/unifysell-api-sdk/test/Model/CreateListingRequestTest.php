@@ -141,6 +141,13 @@ class CreateListingRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test attribute "payment_description"
+     */
+    public function testPropertyPaymentDescription()
+    {
+    }
+
+    /**
      * Test attribute "pictures"
      */
     public function testPropertyPictures()
@@ -193,6 +200,13 @@ class CreateListingRequestTest extends \PHPUnit_Framework_TestCase
      * Test attribute "warranty"
      */
     public function testPropertyWarranty()
+    {
+    }
+
+    /**
+     * Test attribute "warranty_description"
+     */
+    public function testPropertyWarrantyDescription()
     {
     }
 }
