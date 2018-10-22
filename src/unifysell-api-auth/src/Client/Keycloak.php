@@ -41,7 +41,7 @@ class Keycloak
      * @param string $clientId
      * @param string $clientSecret
      */
-    public function __construct($clientId = 'demo-client', $clientSecret = 'c562e90b-9ad6-4ae0-be5d-53765b0d4e00')
+    public function __construct($clientId = 'demo-client', $clientSecret = 'f836f6d8-28d0-4e37-8ed0-a0015fc980a5')
     {
         $this->setProvider(
             new \Stevenmaguire\OAuth2\Client\Provider\Keycloak([
