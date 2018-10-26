@@ -45,7 +45,7 @@ class Keycloak
     {
         $this->setProvider(
             new \Stevenmaguire\OAuth2\Client\Provider\Keycloak([
-                'authServerUrl'         => 'https://login.unifysell.de/auth',
+                'authServerUrl'         => 'https://login.nepda.eu/auth',
                 'realm'                 => 'master',
                 'clientId'              => $clientId,
                 'clientSecret'          => $clientSecret,
