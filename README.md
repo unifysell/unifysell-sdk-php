@@ -22,14 +22,13 @@ You can have a look at the `example/complete-example.php` file for a basic usage
 
 ### Authenticate
 
-    $keycloakClient = new \Unifysell\OAuth2\Client\Keycloak();
-    $accessToken = $keycloakClient->createAccessToken();
+    Download Access Token from unifysell Control Center (UCC).
 
 ### Make your first request
 
     $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey(
         'Authorization', 
-        $keycloakClient->getAccessToken()->getToken()
+        '----INSERT BEARER TOKEN HERE----'
     );
     $config->setApiKeyPrefix('Authorization', 'Bearer');
     

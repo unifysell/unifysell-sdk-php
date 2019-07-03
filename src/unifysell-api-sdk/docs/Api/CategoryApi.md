@@ -4,11 +4,10 @@ All URIs are relative to *https://testing.api.unifysell.de*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getCategory**](CategoryApi.md#getCategory) | **GET** /api/category/{id} | Show category
-[**getCategoryV1**](CategoryApi.md#getCategoryV1) | **GET** /api/v1/category/{id} | Show category
-[**listCategories**](CategoryApi.md#listCategories) | **GET** /api/category | List categories
-[**listCategoriesV1**](CategoryApi.md#listCategoriesV1) | **GET** /api/v1/category | List categories
-
+[**getCategory**](CategoryApi.md#getcategory) | **GET** /api/category/{id} | Show category
+[**getCategoryV1**](CategoryApi.md#getcategoryv1) | **GET** /api/v1/category/{id} | Show category
+[**listCategories**](CategoryApi.md#listcategories) | **GET** /api/category | List categories
+[**listCategoriesV1**](CategoryApi.md#listcategoriesv1) | **GET** /api/v1/category | List categories
 
 # **getCategory**
 > \Unifysell\SDK\Model\CategoryResponse getCategory($id)
@@ -21,7 +20,6 @@ Show a category by ID.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -56,7 +54,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -76,7 +74,6 @@ Show a category by ID.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -111,7 +108,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -131,7 +128,6 @@ List all categories
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -170,7 +166,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -190,7 +186,6 @@ List all categories
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -229,7 +224,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 

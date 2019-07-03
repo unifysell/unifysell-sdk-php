@@ -4,13 +4,12 @@ All URIs are relative to *https://testing.api.unifysell.de*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getTask**](TasksApi.md#getTask) | **GET** /api/task/{id} | Show a task
-[**getTaskV0**](TasksApi.md#getTaskV0) | **GET** /api/v0/task/{id} | Show a task
-[**getTaskV1**](TasksApi.md#getTaskV1) | **GET** /api/v1/task/{id} | Show a task
-[**listTasks**](TasksApi.md#listTasks) | **GET** /api/task | List my tasks
-[**listTasksV0**](TasksApi.md#listTasksV0) | **GET** /api/v0/task | List my tasks
-[**listTasksV1**](TasksApi.md#listTasksV1) | **GET** /api/v1/task | List my tasks
-
+[**getTask**](TasksApi.md#gettask) | **GET** /api/task/{id} | Show a task
+[**getTaskV0**](TasksApi.md#gettaskv0) | **GET** /api/v0/task/{id} | Show a task
+[**getTaskV1**](TasksApi.md#gettaskv1) | **GET** /api/v1/task/{id} | Show a task
+[**listTasks**](TasksApi.md#listtasks) | **GET** /api/task | List my tasks
+[**listTasksV0**](TasksApi.md#listtasksv0) | **GET** /api/v0/task | List my tasks
+[**listTasksV1**](TasksApi.md#listtasksv1) | **GET** /api/v1/task | List my tasks
 
 # **getTask**
 > \Unifysell\SDK\Model\TaskResponse getTask($id)
@@ -23,7 +22,6 @@ Show a task by an ID.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -58,7 +56,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -78,7 +76,6 @@ Show a task by an ID.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -113,7 +110,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -133,7 +130,6 @@ Show a task by an ID.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -168,7 +164,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -188,7 +184,6 @@ List all tasks that belong to me
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -225,7 +220,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -245,7 +240,6 @@ List all tasks that belong to me
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -282,7 +276,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -302,7 +296,6 @@ List all tasks that belong to me
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -339,7 +332,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 

@@ -30,14 +30,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Unifysell\\SDK\\" : "src/unifysell-api-sdk/lib/",
-      "Unifysell\\OAuth2\\" : "src/unifysell-api-auth/src/"
+      "Unifysell\\SDK\\" : "src/unifysell-api-sdk/lib/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Unifysell\\SDK\\" : "src/unifysell-api-sdk/test/",
-      "Unifysell\\OAuth2\\Test\\" : "src/unifysell-api-auth/test/"
+      "Unifysell\\SDK\\" : "src/unifysell-api-sdk/test/"
     }
   }
 }

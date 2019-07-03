@@ -4,15 +4,14 @@ All URIs are relative to *https://testing.api.unifysell.de*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createMarketplace**](MarketplacesApi.md#createMarketplace) | **POST** /api/marketplace | create a new marketplace
-[**createMarketplaceV1**](MarketplacesApi.md#createMarketplaceV1) | **POST** /api/v1/marketplace | create a new marketplace
-[**getMarketplace**](MarketplacesApi.md#getMarketplace) | **GET** /api/marketplace/{id} | Show marketplace
-[**getMarketplaceV1**](MarketplacesApi.md#getMarketplaceV1) | **GET** /api/v1/marketplace/{id} | Show marketplace
-[**listMarketplaces**](MarketplacesApi.md#listMarketplaces) | **GET** /api/marketplace | List marketplaces
-[**listMarketplacesV1**](MarketplacesApi.md#listMarketplacesV1) | **GET** /api/v1/marketplace | List marketplaces
-[**updateMarketplace**](MarketplacesApi.md#updateMarketplace) | **PATCH** /api/marketplace | update a marketplace
-[**updateMarketplaceV1**](MarketplacesApi.md#updateMarketplaceV1) | **PATCH** /api/v1/marketplace | update a marketplace
-
+[**createMarketplace**](MarketplacesApi.md#createmarketplace) | **POST** /api/marketplace | create a new marketplace
+[**createMarketplaceV1**](MarketplacesApi.md#createmarketplacev1) | **POST** /api/v1/marketplace | create a new marketplace
+[**getMarketplace**](MarketplacesApi.md#getmarketplace) | **GET** /api/marketplace/{id} | Show marketplace
+[**getMarketplaceV1**](MarketplacesApi.md#getmarketplacev1) | **GET** /api/v1/marketplace/{id} | Show marketplace
+[**listMarketplaces**](MarketplacesApi.md#listmarketplaces) | **GET** /api/marketplace | List marketplaces
+[**listMarketplacesV1**](MarketplacesApi.md#listmarketplacesv1) | **GET** /api/v1/marketplace | List marketplaces
+[**updateMarketplace**](MarketplacesApi.md#updatemarketplace) | **PATCH** /api/marketplace | update a marketplace
+[**updateMarketplaceV1**](MarketplacesApi.md#updatemarketplacev1) | **PATCH** /api/v1/marketplace | update a marketplace
 
 # **createMarketplace**
 > \Unifysell\SDK\Model\CreateMarketplaceResponse createMarketplace($body)
@@ -25,7 +24,6 @@ Create a marketplace by giving data for a complete and valid marketplace.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -37,7 +35,7 @@ $apiInstance = new Unifysell\SDK\Api\MarketplacesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$body = new \Unifysell\SDK\Model\CreateMarketplaceRequest(); // \Unifysell\SDK\Model\CreateMarketplaceRequest | the request object for create marketplace
+$body = new \stdClass; // object | the request object for create marketplace
 
 try {
     $result = $apiInstance->createMarketplace($body);
@@ -52,7 +50,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**\Unifysell\SDK\Model\CreateMarketplaceRequest**](../Model/CreateMarketplaceRequest.md)| the request object for create marketplace |
+ **body** | [**object**](../Model/object.md)| the request object for create marketplace |
 
 ### Return type
 
@@ -60,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -80,7 +78,6 @@ Create a marketplace by giving data for a complete and valid marketplace.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -92,7 +89,7 @@ $apiInstance = new Unifysell\SDK\Api\MarketplacesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$body = new \Unifysell\SDK\Model\CreateMarketplaceRequest(); // \Unifysell\SDK\Model\CreateMarketplaceRequest | the request object for create marketplace
+$body = new \stdClass; // object | the request object for create marketplace
 
 try {
     $result = $apiInstance->createMarketplaceV1($body);
@@ -107,7 +104,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**\Unifysell\SDK\Model\CreateMarketplaceRequest**](../Model/CreateMarketplaceRequest.md)| the request object for create marketplace |
+ **body** | [**object**](../Model/object.md)| the request object for create marketplace |
 
 ### Return type
 
@@ -115,7 +112,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -135,7 +132,6 @@ Show a marketplace by ID.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -170,7 +166,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -190,7 +186,6 @@ Show a marketplace by ID.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -225,7 +220,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -245,7 +240,6 @@ List all marketplaces
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -282,7 +276,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -302,7 +296,6 @@ List all marketplaces
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -339,7 +332,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -349,7 +342,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateMarketplace**
-> \Unifysell\SDK\Model\UpdateMarketplaceResponse updateMarketplace($id, $body)
+> \Unifysell\SDK\Model\UpdateMarketplaceResponse updateMarketplace($body, $id)
 
 update a marketplace
 
@@ -359,7 +352,6 @@ Update a marketplace by giving an id and data to be updated.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -371,11 +363,11 @@ $apiInstance = new Unifysell\SDK\Api\MarketplacesApi(
     new GuzzleHttp\Client(),
     $config
 );
+$body = new \stdClass; // object | the request object for update marketplace
 $id = 56; // int | Marketplace ID
-$body = new \Unifysell\SDK\Model\UpdateMarketplaceRequest(); // \Unifysell\SDK\Model\UpdateMarketplaceRequest | the request object for update marketplace
 
 try {
-    $result = $apiInstance->updateMarketplace($id, $body);
+    $result = $apiInstance->updateMarketplace($body, $id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MarketplacesApi->updateMarketplace: ', $e->getMessage(), PHP_EOL;
@@ -387,8 +379,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **body** | [**object**](../Model/object.md)| the request object for update marketplace |
  **id** | **int**| Marketplace ID |
- **body** | [**\Unifysell\SDK\Model\UpdateMarketplaceRequest**](../Model/UpdateMarketplaceRequest.md)| the request object for update marketplace |
 
 ### Return type
 
@@ -396,7 +388,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -406,7 +398,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateMarketplaceV1**
-> \Unifysell\SDK\Model\UpdateMarketplaceResponse updateMarketplaceV1($id, $body)
+> \Unifysell\SDK\Model\UpdateMarketplaceResponse updateMarketplaceV1($body, $id)
 
 update a marketplace
 
@@ -416,7 +408,6 @@ Update a marketplace by giving an id and data to be updated.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -428,11 +419,11 @@ $apiInstance = new Unifysell\SDK\Api\MarketplacesApi(
     new GuzzleHttp\Client(),
     $config
 );
+$body = new \stdClass; // object | the request object for update marketplace
 $id = 56; // int | Marketplace ID
-$body = new \Unifysell\SDK\Model\UpdateMarketplaceRequest(); // \Unifysell\SDK\Model\UpdateMarketplaceRequest | the request object for update marketplace
 
 try {
-    $result = $apiInstance->updateMarketplaceV1($id, $body);
+    $result = $apiInstance->updateMarketplaceV1($body, $id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MarketplacesApi->updateMarketplaceV1: ', $e->getMessage(), PHP_EOL;
@@ -444,8 +435,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **body** | [**object**](../Model/object.md)| the request object for update marketplace |
  **id** | **int**| Marketplace ID |
- **body** | [**\Unifysell\SDK\Model\UpdateMarketplaceRequest**](../Model/UpdateMarketplaceRequest.md)| the request object for update marketplace |
 
 ### Return type
 
@@ -453,7 +444,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 

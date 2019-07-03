@@ -4,15 +4,14 @@ All URIs are relative to *https://testing.api.unifysell.de*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createListing**](ListingsApi.md#createListing) | **POST** /api/listing | create a new listing
-[**createListingV1**](ListingsApi.md#createListingV1) | **POST** /api/v1/listing | create a new listing
-[**getListing**](ListingsApi.md#getListing) | **GET** /api/listing/{id} | Show listing
-[**getListingV1**](ListingsApi.md#getListingV1) | **GET** /api/v1/listing/{id} | Show listing
-[**listListings**](ListingsApi.md#listListings) | **GET** /api/listing | List listings
-[**listListingsV1**](ListingsApi.md#listListingsV1) | **GET** /api/v1/listing | List listings
-[**updateListing**](ListingsApi.md#updateListing) | **PATCH** /api/listing | update a listing
-[**updateListingV1**](ListingsApi.md#updateListingV1) | **PATCH** /api/v1/listing | update a listing
-
+[**createListing**](ListingsApi.md#createlisting) | **POST** /api/listing | create a new listing
+[**createListingV1**](ListingsApi.md#createlistingv1) | **POST** /api/v1/listing | create a new listing
+[**getListing**](ListingsApi.md#getlisting) | **GET** /api/listing/{id} | Show listing
+[**getListingV1**](ListingsApi.md#getlistingv1) | **GET** /api/v1/listing/{id} | Show listing
+[**listListings**](ListingsApi.md#listlistings) | **GET** /api/listing | List listings
+[**listListingsV1**](ListingsApi.md#listlistingsv1) | **GET** /api/v1/listing | List listings
+[**updateListing**](ListingsApi.md#updatelisting) | **PATCH** /api/listing | update a listing
+[**updateListingV1**](ListingsApi.md#updatelistingv1) | **PATCH** /api/v1/listing | update a listing
 
 # **createListing**
 > \Unifysell\SDK\Model\CreateListingResponse createListing($body)
@@ -25,7 +24,6 @@ Create a listing by giving data for a complete and valid listing.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -60,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -80,7 +78,6 @@ Create a listing by giving data for a complete and valid listing.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -115,7 +112,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -135,7 +132,6 @@ Show a listing by ID.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -170,7 +166,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -190,7 +186,6 @@ Show a listing by ID.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -225,7 +220,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -245,7 +240,6 @@ List all listings
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -282,7 +276,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -302,7 +296,6 @@ List all listings
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -339,7 +332,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -349,7 +342,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateListing**
-> \Unifysell\SDK\Model\UpdateListingResponse updateListing($id, $body)
+> \Unifysell\SDK\Model\UpdateListingResponse updateListing($body, $id)
 
 update a listing
 
@@ -359,7 +352,6 @@ Update a listing by giving an id and data to be updated.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -371,11 +363,11 @@ $apiInstance = new Unifysell\SDK\Api\ListingsApi(
     new GuzzleHttp\Client(),
     $config
 );
+$body = new \stdClass; // object | the request object for update listing
 $id = 56; // int | Listing ID
-$body = new \Unifysell\SDK\Model\UpdateListingRequest(); // \Unifysell\SDK\Model\UpdateListingRequest | the request object for update listing
 
 try {
-    $result = $apiInstance->updateListing($id, $body);
+    $result = $apiInstance->updateListing($body, $id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ListingsApi->updateListing: ', $e->getMessage(), PHP_EOL;
@@ -387,8 +379,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **body** | [**object**](../Model/object.md)| the request object for update listing |
  **id** | **int**| Listing ID |
- **body** | [**\Unifysell\SDK\Model\UpdateListingRequest**](../Model/UpdateListingRequest.md)| the request object for update listing |
 
 ### Return type
 
@@ -396,7 +388,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -406,7 +398,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateListingV1**
-> \Unifysell\SDK\Model\UpdateListingResponse updateListingV1($id, $body)
+> \Unifysell\SDK\Model\UpdateListingResponse updateListingV1($body, $id)
 
 update a listing
 
@@ -416,7 +408,6 @@ Update a listing by giving an id and data to be updated.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -428,11 +419,11 @@ $apiInstance = new Unifysell\SDK\Api\ListingsApi(
     new GuzzleHttp\Client(),
     $config
 );
+$body = new \stdClass; // object | the request object for update listing
 $id = 56; // int | Listing ID
-$body = new \Unifysell\SDK\Model\UpdateListingRequest(); // \Unifysell\SDK\Model\UpdateListingRequest | the request object for update listing
 
 try {
-    $result = $apiInstance->updateListingV1($id, $body);
+    $result = $apiInstance->updateListingV1($body, $id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ListingsApi->updateListingV1: ', $e->getMessage(), PHP_EOL;
@@ -444,8 +435,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **body** | [**object**](../Model/object.md)| the request object for update listing |
  **id** | **int**| Listing ID |
- **body** | [**\Unifysell\SDK\Model\UpdateListingRequest**](../Model/UpdateListingRequest.md)| the request object for update listing |
 
 ### Return type
 
@@ -453,7 +444,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 

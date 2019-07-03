@@ -4,15 +4,14 @@ All URIs are relative to *https://testing.api.unifysell.de*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createChannel**](ChannelsApi.md#createChannel) | **POST** /api/channel | create a new channel
-[**createChannelV1**](ChannelsApi.md#createChannelV1) | **POST** /api/v1/channel | create a new channel
-[**getChannel**](ChannelsApi.md#getChannel) | **GET** /api/channel/{id} | Show channel
-[**getChannelV1**](ChannelsApi.md#getChannelV1) | **GET** /api/v1/channel/{id} | Show channel
-[**listChannels**](ChannelsApi.md#listChannels) | **GET** /api/channel | List channels
-[**listChannelsV1**](ChannelsApi.md#listChannelsV1) | **GET** /api/v1/channel | List channels
-[**updateChannel**](ChannelsApi.md#updateChannel) | **PATCH** /api/channel | update a channel
-[**updateChannelV1**](ChannelsApi.md#updateChannelV1) | **PATCH** /api/v1/channel | update a channel
-
+[**createChannel**](ChannelsApi.md#createchannel) | **POST** /api/channel | create a new channel
+[**createChannelV1**](ChannelsApi.md#createchannelv1) | **POST** /api/v1/channel | create a new channel
+[**getChannel**](ChannelsApi.md#getchannel) | **GET** /api/channel/{id} | Show channel
+[**getChannelV1**](ChannelsApi.md#getchannelv1) | **GET** /api/v1/channel/{id} | Show channel
+[**listChannels**](ChannelsApi.md#listchannels) | **GET** /api/channel | List channels
+[**listChannelsV1**](ChannelsApi.md#listchannelsv1) | **GET** /api/v1/channel | List channels
+[**updateChannel**](ChannelsApi.md#updatechannel) | **PATCH** /api/channel | update a channel
+[**updateChannelV1**](ChannelsApi.md#updatechannelv1) | **PATCH** /api/v1/channel | update a channel
 
 # **createChannel**
 > \Unifysell\SDK\Model\CreateChannelResponse createChannel($body)
@@ -25,7 +24,6 @@ Create a channel by giving data for a complete and valid channel.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -37,7 +35,7 @@ $apiInstance = new Unifysell\SDK\Api\ChannelsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$body = new \Unifysell\SDK\Model\CreateChannelRequest(); // \Unifysell\SDK\Model\CreateChannelRequest | the request object for create channel
+$body = new \stdClass; // object | the request object for create channel
 
 try {
     $result = $apiInstance->createChannel($body);
@@ -52,7 +50,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**\Unifysell\SDK\Model\CreateChannelRequest**](../Model/CreateChannelRequest.md)| the request object for create channel |
+ **body** | [**object**](../Model/object.md)| the request object for create channel |
 
 ### Return type
 
@@ -60,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -80,7 +78,6 @@ Create a channel by giving data for a complete and valid channel.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -92,7 +89,7 @@ $apiInstance = new Unifysell\SDK\Api\ChannelsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$body = new \Unifysell\SDK\Model\CreateChannelRequest(); // \Unifysell\SDK\Model\CreateChannelRequest | the request object for create channel
+$body = new \stdClass; // object | the request object for create channel
 
 try {
     $result = $apiInstance->createChannelV1($body);
@@ -107,7 +104,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**\Unifysell\SDK\Model\CreateChannelRequest**](../Model/CreateChannelRequest.md)| the request object for create channel |
+ **body** | [**object**](../Model/object.md)| the request object for create channel |
 
 ### Return type
 
@@ -115,7 +112,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -135,7 +132,6 @@ Show a channel by ID.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -170,7 +166,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -190,7 +186,6 @@ Show a channel by ID.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -225,7 +220,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -245,7 +240,6 @@ List all channels
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -282,7 +276,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -302,7 +296,6 @@ List all channels
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -339,7 +332,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -349,7 +342,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateChannel**
-> \Unifysell\SDK\Model\UpdateChannelResponse updateChannel($id, $body)
+> \Unifysell\SDK\Model\UpdateChannelResponse updateChannel($body, $id)
 
 update a channel
 
@@ -359,7 +352,6 @@ Update a channel by giving an id and data to be updated.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -371,11 +363,11 @@ $apiInstance = new Unifysell\SDK\Api\ChannelsApi(
     new GuzzleHttp\Client(),
     $config
 );
+$body = new \stdClass; // object | the request object for update channel
 $id = 56; // int | Channel ID
-$body = new \Unifysell\SDK\Model\UpdateChannelRequest(); // \Unifysell\SDK\Model\UpdateChannelRequest | the request object for update channel
 
 try {
-    $result = $apiInstance->updateChannel($id, $body);
+    $result = $apiInstance->updateChannel($body, $id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ChannelsApi->updateChannel: ', $e->getMessage(), PHP_EOL;
@@ -387,8 +379,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **body** | [**object**](../Model/object.md)| the request object for update channel |
  **id** | **int**| Channel ID |
- **body** | [**\Unifysell\SDK\Model\UpdateChannelRequest**](../Model/UpdateChannelRequest.md)| the request object for update channel |
 
 ### Return type
 
@@ -396,7 +388,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -406,7 +398,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **updateChannelV1**
-> \Unifysell\SDK\Model\UpdateChannelResponse updateChannelV1($id, $body)
+> \Unifysell\SDK\Model\UpdateChannelResponse updateChannelV1($body, $id)
 
 update a channel
 
@@ -416,7 +408,6 @@ Update a channel by giving an id and data to be updated.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -428,11 +419,11 @@ $apiInstance = new Unifysell\SDK\Api\ChannelsApi(
     new GuzzleHttp\Client(),
     $config
 );
+$body = new \stdClass; // object | the request object for update channel
 $id = 56; // int | Channel ID
-$body = new \Unifysell\SDK\Model\UpdateChannelRequest(); // \Unifysell\SDK\Model\UpdateChannelRequest | the request object for update channel
 
 try {
-    $result = $apiInstance->updateChannelV1($id, $body);
+    $result = $apiInstance->updateChannelV1($body, $id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ChannelsApi->updateChannelV1: ', $e->getMessage(), PHP_EOL;
@@ -444,8 +435,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **body** | [**object**](../Model/object.md)| the request object for update channel |
  **id** | **int**| Channel ID |
- **body** | [**\Unifysell\SDK\Model\UpdateChannelRequest**](../Model/UpdateChannelRequest.md)| the request object for update channel |
 
 ### Return type
 
@@ -453,7 +444,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 

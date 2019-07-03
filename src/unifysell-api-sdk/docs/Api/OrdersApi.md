@@ -4,26 +4,25 @@ All URIs are relative to *https://testing.api.unifysell.de*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getOrder**](OrdersApi.md#getOrder) | **GET** /api/order/{id} | Show order
-[**getOrderV0**](OrdersApi.md#getOrderV0) | **GET** /api/v0/order/{id} | Show order
-[**getOrderV1**](OrdersApi.md#getOrderV1) | **GET** /api/v1/order/{id} | Show order
-[**listOrders**](OrdersApi.md#listOrders) | **GET** /api/order | List orders
-[**listOrdersV0**](OrdersApi.md#listOrdersV0) | **GET** /api/v0/order | List orders
-[**listOrdersV1**](OrdersApi.md#listOrdersV1) | **GET** /api/v1/order | List orders
-[**markOrderAsAcknowledged**](OrdersApi.md#markOrderAsAcknowledged) | **PATCH** /api/order/{order_id}/mark-as-acknowledged | Mark a given order as acknowledged.
-[**markOrderAsAcknowledgedV1**](OrdersApi.md#markOrderAsAcknowledgedV1) | **PATCH** /api/v1/order/{order_id}/mark-as-acknowledged | Mark a given order as acknowledged.
-[**markOrderAsCanceled**](OrdersApi.md#markOrderAsCanceled) | **PATCH** /api/order/{order_id}/mark-as-canceled | Mark a given order as canceled
-[**markOrderAsCanceledV1**](OrdersApi.md#markOrderAsCanceledV1) | **PATCH** /api/v1/order/{order_id}/mark-as-canceled | Mark a given order as canceled
-[**markOrderAsNotAcknowledged**](OrdersApi.md#markOrderAsNotAcknowledged) | **PATCH** /api/order/{order_id}/mark-as-not-acknowledged | Mark a given order as NOT acknowledged.
-[**markOrderAsNotAcknowledgedV1**](OrdersApi.md#markOrderAsNotAcknowledgedV1) | **PATCH** /api/v1/order/{order_id}/mark-as-not-acknowledged | Mark a given order as NOT acknowledged.
-[**markOrderAsPaid**](OrdersApi.md#markOrderAsPaid) | **PATCH** /api/order/{order_id}/mark-as-paid | Mark a given order as paid.
-[**markOrderAsPaidV1**](OrdersApi.md#markOrderAsPaidV1) | **PATCH** /api/v1/order/{order_id}/mark-as-paid | Mark a given order as paid.
-[**markOrderAsRefund**](OrdersApi.md#markOrderAsRefund) | **PATCH** /api/order/{order_id}/mark-as-refund | Mark a given order as refund
-[**markOrderAsRefundV1**](OrdersApi.md#markOrderAsRefundV1) | **PATCH** /api/v1/order/{order_id}/mark-as-refund | Mark a given order as refund
-[**markOrderAsShipped**](OrdersApi.md#markOrderAsShipped) | **PATCH** /api/order/{order_id}/mark-as-shipped | Mark a given order as shipped
-[**markOrderAsShippedV0**](OrdersApi.md#markOrderAsShippedV0) | **PATCH** /api/v0/order/{order_id}/mark-as-shipped | Mark a given order as shipped
-[**markOrderAsShippedV1**](OrdersApi.md#markOrderAsShippedV1) | **PATCH** /api/v1/order/{order_id}/mark-as-shipped | Mark a given order as shipped
-
+[**getOrder**](OrdersApi.md#getorder) | **GET** /api/order/{id} | Show order
+[**getOrderV0**](OrdersApi.md#getorderv0) | **GET** /api/v0/order/{id} | Show order
+[**getOrderV1**](OrdersApi.md#getorderv1) | **GET** /api/v1/order/{id} | Show order
+[**listOrders**](OrdersApi.md#listorders) | **GET** /api/order | List orders
+[**listOrdersV0**](OrdersApi.md#listordersv0) | **GET** /api/v0/order | List orders
+[**listOrdersV1**](OrdersApi.md#listordersv1) | **GET** /api/v1/order | List orders
+[**markOrderAsAcknowledged**](OrdersApi.md#markorderasacknowledged) | **PATCH** /api/order/{order_id}/mark-as-acknowledged | Mark a given order as acknowledged.
+[**markOrderAsAcknowledgedV1**](OrdersApi.md#markorderasacknowledgedv1) | **PATCH** /api/v1/order/{order_id}/mark-as-acknowledged | Mark a given order as acknowledged.
+[**markOrderAsCanceled**](OrdersApi.md#markorderascanceled) | **PATCH** /api/order/{order_id}/mark-as-canceled | Mark a given order as canceled
+[**markOrderAsCanceledV1**](OrdersApi.md#markorderascanceledv1) | **PATCH** /api/v1/order/{order_id}/mark-as-canceled | Mark a given order as canceled
+[**markOrderAsNotAcknowledged**](OrdersApi.md#markorderasnotacknowledged) | **PATCH** /api/order/{order_id}/mark-as-not-acknowledged | Mark a given order as NOT acknowledged.
+[**markOrderAsNotAcknowledgedV1**](OrdersApi.md#markorderasnotacknowledgedv1) | **PATCH** /api/v1/order/{order_id}/mark-as-not-acknowledged | Mark a given order as NOT acknowledged.
+[**markOrderAsPaid**](OrdersApi.md#markorderaspaid) | **PATCH** /api/order/{order_id}/mark-as-paid | Mark a given order as paid.
+[**markOrderAsPaidV1**](OrdersApi.md#markorderaspaidv1) | **PATCH** /api/v1/order/{order_id}/mark-as-paid | Mark a given order as paid.
+[**markOrderAsRefund**](OrdersApi.md#markorderasrefund) | **PATCH** /api/order/{order_id}/mark-as-refund | Mark a given order as refund
+[**markOrderAsRefundV1**](OrdersApi.md#markorderasrefundv1) | **PATCH** /api/v1/order/{order_id}/mark-as-refund | Mark a given order as refund
+[**markOrderAsShipped**](OrdersApi.md#markorderasshipped) | **PATCH** /api/order/{order_id}/mark-as-shipped | Mark a given order as shipped
+[**markOrderAsShippedV0**](OrdersApi.md#markorderasshippedv0) | **PATCH** /api/v0/order/{order_id}/mark-as-shipped | Mark a given order as shipped
+[**markOrderAsShippedV1**](OrdersApi.md#markorderasshippedv1) | **PATCH** /api/v1/order/{order_id}/mark-as-shipped | Mark a given order as shipped
 
 # **getOrder**
 > \Unifysell\SDK\Model\OrderResponse getOrder($id)
@@ -36,7 +35,6 @@ Show an order by ID.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -71,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -91,7 +89,6 @@ Show an order by ID.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -126,7 +123,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -146,7 +143,6 @@ Show an order by ID.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -181,7 +177,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -201,7 +197,6 @@ List all orders
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -238,7 +233,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -258,7 +253,6 @@ List all orders
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -295,7 +289,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -315,7 +309,6 @@ List all orders
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -352,7 +345,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -372,7 +365,6 @@ Give an order id. The associated order will be marked as acknowledged. This acti
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -407,7 +399,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -427,7 +419,6 @@ Give an order id. The associated order will be marked as acknowledged. This acti
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -462,7 +453,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -482,7 +473,6 @@ Give an order id. The associated order will be marked as canceled.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -517,7 +507,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -537,7 +527,6 @@ Give an order id. The associated order will be marked as canceled.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -572,7 +561,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -592,7 +581,6 @@ Give an order id. The associated order will be marked as NOT acknowledged. This 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -627,7 +615,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -647,7 +635,6 @@ Give an order id. The associated order will be marked as NOT acknowledged. This 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -682,7 +669,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -702,7 +689,6 @@ Give an order id. The associated order will be marked as paid.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -737,7 +723,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -757,7 +743,6 @@ Give an order id. The associated order will be marked as paid.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -792,7 +777,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -812,7 +797,6 @@ Give an order id. The associated order will be marked as refund.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -847,7 +831,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -867,7 +851,6 @@ Give an order id. The associated order will be marked as refund.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -902,7 +885,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -922,7 +905,6 @@ Give an order id. The associated order will be marked as shipped.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -959,7 +941,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -979,7 +961,6 @@ Give an order id. The associated order will be marked as shipped.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -1016,7 +997,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
@@ -1036,7 +1017,6 @@ Give an order id. The associated order will be marked as shipped.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 // Configure API key authorization: OAuthBearer2xx
 $config = Unifysell\SDK\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -1073,7 +1053,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuthBearer2xx](../../README.md#OAuthBearer2xx)
+[OAuthBearer2xx](../../README.md#OAuthBearer2xx), [OAuthBearer300](../../README.md#OAuthBearer300)
 
 ### HTTP request headers
 
