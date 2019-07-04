@@ -19,8 +19,7 @@
     "ext-curl": "*",
     "ext-json": "*",
     "ext-mbstring": "*",
-    "guzzlehttp/guzzle": "^6.2",
-    "stevenmaguire/oauth2-keycloak": "^2.1"
+    "guzzlehttp/guzzle": "^6.2"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",
